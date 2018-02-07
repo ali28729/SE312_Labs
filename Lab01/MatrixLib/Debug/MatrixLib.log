@@ -1,0 +1,9 @@
+﻿  MatrixAddSub.cpp
+MatrixAddSub.cpp(1): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  MatrixInverse.cpp
+MatrixInverse.cpp(24): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  MatrixMultiplication.cpp
+MatrixMultiplication.cpp(1): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  TestClient.cpp
+TestClient.cpp(76): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  Generating Code...
