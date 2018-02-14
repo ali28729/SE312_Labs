@@ -51,6 +51,7 @@ int main() {
 		case 2:
 			break;
 		case 3:
+			transpose(mat1);
 			break;
 		case 4:
 			break;

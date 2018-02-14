@@ -1,15 +1,19 @@
+
+#include "stdafx.h"
+
+using namespace std;
+
 #include <iostream>
 #include <vector>
 #include <conio.h>
+#include"MatrixLib.h"
 
-void transpose(std::vector< std::vector<int> > matrix)
+void MatrixLib::Class1::transpose(std::vector< std::vector<int> > matrix)
 {
 	int row = matrix.size();
 	int col = matrix[0].size();
-	int **result;
-	result = new int *[col];
-	for (int i = 0; i < col; i++)
-		result[i] = new int[row];
+	std::vector<std::vector<int>> result(col, std::vector<int>(row, 0));
+
 
 	for (int i = 0; i<row; i++)
 		for (int j = 0; j<col; j++)

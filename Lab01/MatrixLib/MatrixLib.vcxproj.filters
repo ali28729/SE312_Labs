@@ -44,9 +44,6 @@
     <ClCompile Include="MatrixAddSub.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TestClient.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />

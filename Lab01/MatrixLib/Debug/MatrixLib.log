@@ -1,9 +1,24 @@
-﻿  MatrixAddSub.cpp
-MatrixAddSub.cpp(1): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
-  MatrixInverse.cpp
-MatrixInverse.cpp(24): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
-  MatrixMultiplication.cpp
-MatrixMultiplication.cpp(1): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
-  TestClient.cpp
-TestClient.cpp(76): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
-  Generating Code...
+﻿Build started 07/02/2018 3:46:37 AM.
+     1>Project "C:\Users\bpervaiz.bese15seecs\Documents\GitHub\MatrixClient\MatrixLib\MatrixLib.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\\" /AI"C:\Program Files (x86)\Windows Kits\8.1\References\CommonConfiguration\Neutral" /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\\" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDLL /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\MatrixLib.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll" /analyze- /errorReport:prompt /clr:nostdlib MatrixAddSub.cpp MatrixInverse.cpp MatrixLib.cpp MatrixMultiplication.cpp
+         MatrixAddSub.cpp
+         MatrixInverse.cpp
+         MatrixLib.cpp
+         MatrixMultiplication.cpp
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\bpervaiz.bese15seecs\Documents\GitHub\MatrixClient\Debug\MatrixLib.dll" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\bpervaiz.bese15seecs\Documents\GitHub\MatrixClient\Debug\MatrixLib.pdb" /ASSEMBLYDEBUG /TLBID:1 /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 /DLL Debug\app.res
+         Debug\AssemblyInfo.obj
+         Debug\MatrixAddSub.obj
+         Debug\MatrixInverse.obj
+         Debug\MatrixLib.obj
+         Debug\MatrixMultiplication.obj
+         Debug\Stdafx.obj
+         "Debug\.NETFramework,Version=v4.5.AssemblyAttributes.obj"
+         MatrixLib.vcxproj -> C:\Users\bpervaiz.bese15seecs\Documents\GitHub\MatrixClient\Debug\MatrixLib.dll
+     1>Done Building Project "C:\Users\bpervaiz.bese15seecs\Documents\GitHub\MatrixClient\MatrixLib\MatrixLib.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:04.52
