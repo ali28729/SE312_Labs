@@ -32,27 +32,30 @@
             this.button1 = new System.Windows.Forms.Button();
             this.registeration = new System.Windows.Forms.Button();
             this.logout = new System.Windows.Forms.Button();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.issue = new System.Windows.Forms.TabPage();
             this.login = new System.Windows.Forms.TabPage();
-            this.textBoxGenre = new System.Windows.Forms.TextBox();
-            this.textBoxTitle = new System.Windows.Forms.TextBox();
-            this.textBoxAuthor = new System.Windows.Forms.TextBox();
-            this.buttonGenre = new System.Windows.Forms.Button();
-            this.buttonTitle = new System.Windows.Forms.Button();
-            this.buttonAuthor = new System.Windows.Forms.Button();
-            this.labelGenre = new System.Windows.Forms.Label();
-            this.labelTitle = new System.Windows.Forms.Label();
-            this.labelAuthor = new System.Windows.Forms.Label();
             this.listBoxSearch = new System.Windows.Forms.ListBox();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.allRecordsButton = new System.Windows.Forms.Button();
-            this.allRecordsListBox = new System.Windows.Forms.ListBox();
-            this.allRecordsLabel = new System.Windows.Forms.Label();
-            this.books = new System.Windows.Forms.Button();
+            this.labelAuthor = new System.Windows.Forms.Label();
+            this.labelTitle = new System.Windows.Forms.Label();
+            this.labelGenre = new System.Windows.Forms.Label();
+            this.buttonAuthor = new System.Windows.Forms.Button();
+            this.buttonTitle = new System.Windows.Forms.Button();
+            this.buttonGenre = new System.Windows.Forms.Button();
+            this.textBoxAuthor = new System.Windows.Forms.TextBox();
+            this.textBoxTitle = new System.Windows.Forms.TextBox();
+            this.textBoxGenre = new System.Windows.Forms.TextBox();
+            this.AllRecords = new System.Windows.Forms.TabPage();
             this.journals = new System.Windows.Forms.Button();
+            this.books = new System.Windows.Forms.Button();
+            this.allRecordsLabel = new System.Windows.Forms.Label();
+            this.allRecordsListBox = new System.Windows.Forms.ListBox();
+            this.allRecordsButton = new System.Windows.Forms.Button();
             this.tabAllRecords = new System.Windows.Forms.TabControl();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.issue.SuspendLayout();
             this.login.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.AllRecords.SuspendLayout();
             this.tabAllRecords.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -91,7 +94,7 @@
             // 
             // logout
             // 
-            this.logout.Location = new System.Drawing.Point(1107, 43);
+            this.logout.Location = new System.Drawing.Point(1107, 13);
             this.logout.Margin = new System.Windows.Forms.Padding(4);
             this.logout.Name = "logout";
             this.logout.Size = new System.Drawing.Size(83, 35);
@@ -101,15 +104,17 @@
             this.logout.Visible = false;
             this.logout.Click += new System.EventHandler(this.logout_Click);
             // 
-            // tabPage2
+            // issue
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 28);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1181, 346);
-            this.tabPage2.TabIndex = 2;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.issue.Controls.Add(this.textBox1);
+            this.issue.Controls.Add(this.listBox1);
+            this.issue.Location = new System.Drawing.Point(4, 28);
+            this.issue.Name = "issue";
+            this.issue.Padding = new System.Windows.Forms.Padding(3);
+            this.issue.Size = new System.Drawing.Size(1181, 358);
+            this.issue.TabIndex = 2;
+            this.issue.Text = "Issue";
+            this.issue.UseVisualStyleBackColor = true;
             // 
             // login
             // 
@@ -127,100 +132,10 @@
             this.login.Margin = new System.Windows.Forms.Padding(4);
             this.login.Name = "login";
             this.login.Padding = new System.Windows.Forms.Padding(4);
-            this.login.Size = new System.Drawing.Size(1181, 346);
+            this.login.Size = new System.Drawing.Size(1181, 358);
             this.login.TabIndex = 1;
             this.login.Text = "Search";
             this.login.UseVisualStyleBackColor = true;
-            // 
-            // textBoxGenre
-            // 
-            this.textBoxGenre.Location = new System.Drawing.Point(257, 26);
-            this.textBoxGenre.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxGenre.Name = "textBoxGenre";
-            this.textBoxGenre.Size = new System.Drawing.Size(132, 27);
-            this.textBoxGenre.TabIndex = 0;
-            // 
-            // textBoxTitle
-            // 
-            this.textBoxTitle.Location = new System.Drawing.Point(257, 63);
-            this.textBoxTitle.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxTitle.Name = "textBoxTitle";
-            this.textBoxTitle.Size = new System.Drawing.Size(132, 27);
-            this.textBoxTitle.TabIndex = 1;
-            // 
-            // textBoxAuthor
-            // 
-            this.textBoxAuthor.Location = new System.Drawing.Point(257, 98);
-            this.textBoxAuthor.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxAuthor.Name = "textBoxAuthor";
-            this.textBoxAuthor.Size = new System.Drawing.Size(132, 27);
-            this.textBoxAuthor.TabIndex = 2;
-            // 
-            // buttonGenre
-            // 
-            this.buttonGenre.Location = new System.Drawing.Point(417, 26);
-            this.buttonGenre.Margin = new System.Windows.Forms.Padding(4);
-            this.buttonGenre.Name = "buttonGenre";
-            this.buttonGenre.Size = new System.Drawing.Size(100, 28);
-            this.buttonGenre.TabIndex = 3;
-            this.buttonGenre.Text = "Search";
-            this.buttonGenre.UseVisualStyleBackColor = true;
-            this.buttonGenre.Click += new System.EventHandler(this.buttonGenre_Click);
-            // 
-            // buttonTitle
-            // 
-            this.buttonTitle.Location = new System.Drawing.Point(417, 62);
-            this.buttonTitle.Margin = new System.Windows.Forms.Padding(4);
-            this.buttonTitle.Name = "buttonTitle";
-            this.buttonTitle.Size = new System.Drawing.Size(100, 28);
-            this.buttonTitle.TabIndex = 4;
-            this.buttonTitle.Text = "Search";
-            this.buttonTitle.UseVisualStyleBackColor = true;
-            this.buttonTitle.Click += new System.EventHandler(this.buttonTitle_Click_1);
-            // 
-            // buttonAuthor
-            // 
-            this.buttonAuthor.Location = new System.Drawing.Point(417, 98);
-            this.buttonAuthor.Margin = new System.Windows.Forms.Padding(4);
-            this.buttonAuthor.Name = "buttonAuthor";
-            this.buttonAuthor.Size = new System.Drawing.Size(100, 28);
-            this.buttonAuthor.TabIndex = 5;
-            this.buttonAuthor.Text = "Search";
-            this.buttonAuthor.UseVisualStyleBackColor = true;
-            this.buttonAuthor.Click += new System.EventHandler(this.buttonAuthor_Click);
-            // 
-            // labelGenre
-            // 
-            this.labelGenre.AutoSize = true;
-            this.labelGenre.Font = new System.Drawing.Font("Maiandra GD", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelGenre.Location = new System.Drawing.Point(31, 34);
-            this.labelGenre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelGenre.Name = "labelGenre";
-            this.labelGenre.Size = new System.Drawing.Size(141, 20);
-            this.labelGenre.TabIndex = 6;
-            this.labelGenre.Text = "Search by Genre";
-            // 
-            // labelTitle
-            // 
-            this.labelTitle.AutoSize = true;
-            this.labelTitle.Font = new System.Drawing.Font("Maiandra GD", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitle.Location = new System.Drawing.Point(31, 70);
-            this.labelTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(129, 20);
-            this.labelTitle.TabIndex = 7;
-            this.labelTitle.Text = "Search by Title";
-            // 
-            // labelAuthor
-            // 
-            this.labelAuthor.AutoSize = true;
-            this.labelAuthor.Font = new System.Drawing.Font("Maiandra GD", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAuthor.Location = new System.Drawing.Point(31, 102);
-            this.labelAuthor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelAuthor.Name = "labelAuthor";
-            this.labelAuthor.Size = new System.Drawing.Size(203, 20);
-            this.labelAuthor.TabIndex = 8;
-            this.labelAuthor.Text = "Search by Author Name";
             // 
             // listBoxSearch
             // 
@@ -233,34 +148,151 @@
             this.listBoxSearch.Name = "listBoxSearch";
             this.listBoxSearch.Size = new System.Drawing.Size(911, 88);
             this.listBoxSearch.TabIndex = 9;
+            this.listBoxSearch.SelectedIndexChanged += new System.EventHandler(this.listBoxSearch_SelectedIndexChanged);
             // 
-            // tabPage1
+            // labelAuthor
             // 
-            this.tabPage1.Controls.Add(this.journals);
-            this.tabPage1.Controls.Add(this.books);
-            this.tabPage1.Controls.Add(this.allRecordsLabel);
-            this.tabPage1.Controls.Add(this.allRecordsListBox);
-            this.tabPage1.Controls.Add(this.allRecordsButton);
-            this.tabPage1.Location = new System.Drawing.Point(4, 28);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(1181, 346);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "All Records";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.labelAuthor.AutoSize = true;
+            this.labelAuthor.Font = new System.Drawing.Font("Maiandra GD", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAuthor.Location = new System.Drawing.Point(31, 102);
+            this.labelAuthor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelAuthor.Name = "labelAuthor";
+            this.labelAuthor.Size = new System.Drawing.Size(203, 20);
+            this.labelAuthor.TabIndex = 8;
+            this.labelAuthor.Text = "Search by Author Name";
             // 
-            // allRecordsButton
+            // labelTitle
             // 
-            this.allRecordsButton.Font = new System.Drawing.Font("Maiandra GD", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.allRecordsButton.Location = new System.Drawing.Point(223, 22);
-            this.allRecordsButton.Margin = new System.Windows.Forms.Padding(4);
-            this.allRecordsButton.Name = "allRecordsButton";
-            this.allRecordsButton.Size = new System.Drawing.Size(100, 28);
-            this.allRecordsButton.TabIndex = 1;
-            this.allRecordsButton.Text = "All";
-            this.allRecordsButton.UseVisualStyleBackColor = true;
-            this.allRecordsButton.Click += new System.EventHandler(this.allRecordsButton_Click_1);
+            this.labelTitle.AutoSize = true;
+            this.labelTitle.Font = new System.Drawing.Font("Maiandra GD", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitle.Location = new System.Drawing.Point(31, 70);
+            this.labelTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelTitle.Name = "labelTitle";
+            this.labelTitle.Size = new System.Drawing.Size(129, 20);
+            this.labelTitle.TabIndex = 7;
+            this.labelTitle.Text = "Search by Title";
+            // 
+            // labelGenre
+            // 
+            this.labelGenre.AutoSize = true;
+            this.labelGenre.Font = new System.Drawing.Font("Maiandra GD", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelGenre.Location = new System.Drawing.Point(31, 34);
+            this.labelGenre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelGenre.Name = "labelGenre";
+            this.labelGenre.Size = new System.Drawing.Size(141, 20);
+            this.labelGenre.TabIndex = 6;
+            this.labelGenre.Text = "Search by Genre";
+            // 
+            // buttonAuthor
+            // 
+            this.buttonAuthor.Location = new System.Drawing.Point(673, 96);
+            this.buttonAuthor.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonAuthor.Name = "buttonAuthor";
+            this.buttonAuthor.Size = new System.Drawing.Size(100, 28);
+            this.buttonAuthor.TabIndex = 5;
+            this.buttonAuthor.Text = "Search";
+            this.buttonAuthor.UseVisualStyleBackColor = true;
+            this.buttonAuthor.Click += new System.EventHandler(this.buttonAuthor_Click);
+            // 
+            // buttonTitle
+            // 
+            this.buttonTitle.Location = new System.Drawing.Point(673, 60);
+            this.buttonTitle.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonTitle.Name = "buttonTitle";
+            this.buttonTitle.Size = new System.Drawing.Size(100, 28);
+            this.buttonTitle.TabIndex = 4;
+            this.buttonTitle.Text = "Search";
+            this.buttonTitle.UseVisualStyleBackColor = true;
+            this.buttonTitle.Click += new System.EventHandler(this.buttonTitle_Click_1);
+            // 
+            // buttonGenre
+            // 
+            this.buttonGenre.Location = new System.Drawing.Point(673, 24);
+            this.buttonGenre.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonGenre.Name = "buttonGenre";
+            this.buttonGenre.Size = new System.Drawing.Size(100, 28);
+            this.buttonGenre.TabIndex = 3;
+            this.buttonGenre.Text = "Search";
+            this.buttonGenre.UseVisualStyleBackColor = true;
+            this.buttonGenre.Click += new System.EventHandler(this.buttonGenre_Click);
+            // 
+            // textBoxAuthor
+            // 
+            this.textBoxAuthor.Location = new System.Drawing.Point(257, 98);
+            this.textBoxAuthor.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxAuthor.Name = "textBoxAuthor";
+            this.textBoxAuthor.Size = new System.Drawing.Size(391, 27);
+            this.textBoxAuthor.TabIndex = 2;
+            // 
+            // textBoxTitle
+            // 
+            this.textBoxTitle.Location = new System.Drawing.Point(257, 63);
+            this.textBoxTitle.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxTitle.Name = "textBoxTitle";
+            this.textBoxTitle.Size = new System.Drawing.Size(391, 27);
+            this.textBoxTitle.TabIndex = 1;
+            this.textBoxTitle.TextChanged += new System.EventHandler(this.textBoxTitle_TextChanged);
+            // 
+            // textBoxGenre
+            // 
+            this.textBoxGenre.Location = new System.Drawing.Point(257, 26);
+            this.textBoxGenre.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxGenre.Name = "textBoxGenre";
+            this.textBoxGenre.Size = new System.Drawing.Size(391, 27);
+            this.textBoxGenre.TabIndex = 0;
+            this.textBoxGenre.TextChanged += new System.EventHandler(this.textBoxGenre_TextChanged);
+            // 
+            // AllRecords
+            // 
+            this.AllRecords.Controls.Add(this.journals);
+            this.AllRecords.Controls.Add(this.books);
+            this.AllRecords.Controls.Add(this.allRecordsLabel);
+            this.AllRecords.Controls.Add(this.allRecordsListBox);
+            this.AllRecords.Controls.Add(this.allRecordsButton);
+            this.AllRecords.Location = new System.Drawing.Point(4, 28);
+            this.AllRecords.Margin = new System.Windows.Forms.Padding(4);
+            this.AllRecords.Name = "AllRecords";
+            this.AllRecords.Padding = new System.Windows.Forms.Padding(4);
+            this.AllRecords.Size = new System.Drawing.Size(1181, 358);
+            this.AllRecords.TabIndex = 0;
+            this.AllRecords.Text = "All Records";
+            this.AllRecords.UseVisualStyleBackColor = true;
+            // 
+            // journals
+            // 
+            this.journals.Font = new System.Drawing.Font("Maiandra GD", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.journals.Location = new System.Drawing.Point(477, 22);
+            this.journals.Margin = new System.Windows.Forms.Padding(4);
+            this.journals.Name = "journals";
+            this.journals.Size = new System.Drawing.Size(100, 28);
+            this.journals.TabIndex = 4;
+            this.journals.Text = "Journals";
+            this.journals.UseVisualStyleBackColor = true;
+            this.journals.Click += new System.EventHandler(this.journals_Click);
+            // 
+            // books
+            // 
+            this.books.Font = new System.Drawing.Font("Maiandra GD", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.books.Location = new System.Drawing.Point(353, 22);
+            this.books.Margin = new System.Windows.Forms.Padding(4);
+            this.books.Name = "books";
+            this.books.Size = new System.Drawing.Size(100, 28);
+            this.books.TabIndex = 3;
+            this.books.Text = "Books";
+            this.books.UseVisualStyleBackColor = true;
+            this.books.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // allRecordsLabel
+            // 
+            this.allRecordsLabel.AutoSize = true;
+            this.allRecordsLabel.Font = new System.Drawing.Font("Maiandra GD", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.allRecordsLabel.Location = new System.Drawing.Point(33, 26);
+            this.allRecordsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.allRecordsLabel.Name = "allRecordsLabel";
+            this.allRecordsLabel.Size = new System.Drawing.Size(144, 24);
+            this.allRecordsLabel.TabIndex = 2;
+            this.allRecordsLabel.Text = "View Artifacts";
+            this.allRecordsLabel.Click += new System.EventHandler(this.allRecordsLabel_Click);
             // 
             // allRecordsListBox
             // 
@@ -275,54 +307,50 @@
             this.allRecordsListBox.TabIndex = 0;
             this.allRecordsListBox.SelectedIndexChanged += new System.EventHandler(this.allRecordsListBox_SelectedIndexChanged);
             // 
-            // allRecordsLabel
+            // allRecordsButton
             // 
-            this.allRecordsLabel.AutoSize = true;
-            this.allRecordsLabel.Font = new System.Drawing.Font("Maiandra GD", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.allRecordsLabel.Location = new System.Drawing.Point(33, 26);
-            this.allRecordsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.allRecordsLabel.Name = "allRecordsLabel";
-            this.allRecordsLabel.Size = new System.Drawing.Size(144, 24);
-            this.allRecordsLabel.TabIndex = 2;
-            this.allRecordsLabel.Text = "View Artifacts";
-            this.allRecordsLabel.Click += new System.EventHandler(this.allRecordsLabel_Click);
-            // 
-            // books
-            // 
-            this.books.Font = new System.Drawing.Font("Maiandra GD", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.books.Location = new System.Drawing.Point(353, 22);
-            this.books.Margin = new System.Windows.Forms.Padding(4);
-            this.books.Name = "books";
-            this.books.Size = new System.Drawing.Size(100, 28);
-            this.books.TabIndex = 3;
-            this.books.Text = "Books";
-            this.books.UseVisualStyleBackColor = true;
-            this.books.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // journals
-            // 
-            this.journals.Font = new System.Drawing.Font("Maiandra GD", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.journals.Location = new System.Drawing.Point(477, 22);
-            this.journals.Margin = new System.Windows.Forms.Padding(4);
-            this.journals.Name = "journals";
-            this.journals.Size = new System.Drawing.Size(100, 28);
-            this.journals.TabIndex = 4;
-            this.journals.Text = "Journals";
-            this.journals.UseVisualStyleBackColor = true;
-            this.journals.Click += new System.EventHandler(this.journals_Click);
+            this.allRecordsButton.Font = new System.Drawing.Font("Maiandra GD", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.allRecordsButton.Location = new System.Drawing.Point(223, 22);
+            this.allRecordsButton.Margin = new System.Windows.Forms.Padding(4);
+            this.allRecordsButton.Name = "allRecordsButton";
+            this.allRecordsButton.Size = new System.Drawing.Size(100, 28);
+            this.allRecordsButton.TabIndex = 1;
+            this.allRecordsButton.Text = "All";
+            this.allRecordsButton.UseVisualStyleBackColor = true;
+            this.allRecordsButton.Click += new System.EventHandler(this.allRecordsButton_Click_1);
             // 
             // tabAllRecords
             // 
-            this.tabAllRecords.Controls.Add(this.tabPage1);
+            this.tabAllRecords.Controls.Add(this.AllRecords);
             this.tabAllRecords.Controls.Add(this.login);
-            this.tabAllRecords.Controls.Add(this.tabPage2);
+            this.tabAllRecords.Controls.Add(this.issue);
             this.tabAllRecords.Font = new System.Drawing.Font("Maiandra GD", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabAllRecords.Location = new System.Drawing.Point(16, 68);
+            this.tabAllRecords.Location = new System.Drawing.Point(16, 56);
             this.tabAllRecords.Margin = new System.Windows.Forms.Padding(4);
             this.tabAllRecords.Name = "tabAllRecords";
             this.tabAllRecords.SelectedIndex = 0;
-            this.tabAllRecords.Size = new System.Drawing.Size(1189, 378);
+            this.tabAllRecords.Size = new System.Drawing.Size(1189, 390);
             this.tabAllRecords.TabIndex = 2;
+            // 
+            // listBox1
+            // 
+            this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBox1.Font = new System.Drawing.Font("Maiandra GD", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 22;
+            this.listBox1.Location = new System.Drawing.Point(21, 85);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(1136, 264);
+            this.listBox1.TabIndex = 1;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(154, 20);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(381, 27);
+            this.textBox1.TabIndex = 2;
             // 
             // Dashboard
             // 
@@ -337,10 +365,12 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Dashboard";
             this.Text = "Library Management System";
+            this.issue.ResumeLayout(false);
+            this.issue.PerformLayout();
             this.login.ResumeLayout(false);
             this.login.PerformLayout();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            this.AllRecords.ResumeLayout(false);
+            this.AllRecords.PerformLayout();
             this.tabAllRecords.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -354,7 +384,7 @@
         public System.Windows.Forms.Button button1;
         public System.Windows.Forms.Button registeration;
         public System.Windows.Forms.Button logout;
-        private System.Windows.Forms.TabPage tabPage2;
+        public System.Windows.Forms.TabPage issue;
         private System.Windows.Forms.TabPage login;
         private System.Windows.Forms.ListBox listBoxSearch;
         private System.Windows.Forms.Label labelAuthor;
@@ -366,13 +396,15 @@
         private System.Windows.Forms.TextBox textBoxAuthor;
         private System.Windows.Forms.TextBox textBoxTitle;
         private System.Windows.Forms.TextBox textBoxGenre;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage AllRecords;
         private System.Windows.Forms.Button journals;
         private System.Windows.Forms.Button books;
         private System.Windows.Forms.Label allRecordsLabel;
         private System.Windows.Forms.ListBox allRecordsListBox;
         private System.Windows.Forms.Button allRecordsButton;
-        private System.Windows.Forms.TabControl tabAllRecords;
+        public System.Windows.Forms.TabControl tabAllRecords;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

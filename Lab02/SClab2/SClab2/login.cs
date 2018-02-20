@@ -59,6 +59,7 @@ namespace SClab2
                     dash.registeration.Hide();
                     dash.button1.Hide();
                     this.Hide();
+                    dash.tabAllRecords.TabPages.Add(dash.issue);
 
                 }
                 else

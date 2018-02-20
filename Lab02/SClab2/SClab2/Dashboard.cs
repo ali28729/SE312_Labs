@@ -16,6 +16,7 @@ namespace SClab2
         public Dashboard()
         {
             InitializeComponent();
+            tabAllRecords.TabPages.Remove(issue);
         }
 
         private void allRecordsButton_Click_1(object sender, EventArgs e)
@@ -304,6 +305,7 @@ namespace SClab2
         {
             login loginwin = new login(this);
             loginwin.Show();
+
             
         }
 
@@ -318,10 +320,29 @@ namespace SClab2
             logout.Hide();
             button1.Show();
             registeration.Show();
-
+            tabAllRecords.TabPages.Remove(issue);
         }
 
         private void allRecordsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void HideTab1_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void textBoxTitle_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBoxSearch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxGenre_TextChanged(object sender, EventArgs e)
         {
 
         }
