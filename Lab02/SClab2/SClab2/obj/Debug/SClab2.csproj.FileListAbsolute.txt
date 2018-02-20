@@ -16,7 +16,5 @@ C:\Users\ali\Documents\GitHub\SE312_Labs\Lab02\SClab2\SClab2\bin\Debug\SClab2.pd
 C:\Users\ali\Documents\GitHub\SE312_Labs\Lab02\SClab2\SClab2\obj\Debug\SClab2.exe
 C:\Users\ali\Documents\GitHub\SE312_Labs\Lab02\SClab2\SClab2\obj\Debug\SClab2.pdb
 C:\Users\ali\Documents\GitHub\SE312_Labs\Lab02\SClab2\SClab2\obj\Debug\SClab2.Register.resources
-C:\Users\ali\Documents\GitHub\SE312_Labs\Lab02\SClab2\SClab2\obj\Debug\SClab2.csproj.CoreCompileInputs.cache
-C:\Users\ali\Documents\GitHub\SE312_Labs\Lab02\SClab2\SClab2\bin\Debug\MySql.Data.dll
-C:\Users\ali\Documents\GitHub\SE312_Labs\Lab02\SClab2\SClab2\bin\Debug\MySql.Data.xml
 C:\Users\ali\Documents\GitHub\SE312_Labs\Lab02\SClab2\SClab2\obj\Debug\SClab2.csprojResolveAssemblyReference.cache
+C:\Users\ali\Documents\GitHub\SE312_Labs\Lab02\SClab2\SClab2\obj\Debug\SClab2.login.resources

@@ -300,22 +300,20 @@ namespace SClab2
         }
 
         //LOG IN Button
-        private void button1_Click_1(object sender, EventArgs e)
+        public void button1_Click_1(object sender, EventArgs e)
         {
-
-            //On Successfull
-            button1.Hide();
-            logout.Show();
-            registeration.Hide();
+            login loginwin = new login(this);
+            loginwin.Show();
+            
         }
 
-        private void registeration_Click(object sender, EventArgs e)
+        public void registeration_Click(object sender, EventArgs e)
         {
             Register blob = new Register();
             blob.Show();
         }
 
-        private void logout_Click(object sender, EventArgs e)
+        public void logout_Click(object sender, EventArgs e)
         {
             logout.Hide();
             button1.Show();
