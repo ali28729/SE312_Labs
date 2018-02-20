@@ -17,3 +17,4 @@ C:\Users\ali\Documents\GitHub\SE312_Labs\Lab02\SClab2\SClab2\obj\Debug\SClab2.ex
 C:\Users\ali\Documents\GitHub\SE312_Labs\Lab02\SClab2\SClab2\obj\Debug\SClab2.pdb
 C:\Users\ali\Documents\GitHub\SE312_Labs\Lab02\SClab2\SClab2\obj\Debug\SClab2.Register.resources
 C:\Users\ali\Documents\GitHub\SE312_Labs\Lab02\SClab2\SClab2\obj\Debug\SClab2.login.resources
+C:\Users\ali\Documents\GitHub\SE312_Labs\Lab02\SClab2\SClab2\obj\Debug\SClab2.csprojResolveAssemblyReference.cache

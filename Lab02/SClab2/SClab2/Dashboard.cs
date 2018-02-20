@@ -202,6 +202,7 @@ namespace SClab2
         void btn_Click(object sender, EventArgs e)
         {
             int nolim = 3;
+            string curart = "";
             string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=LMS;";
             string query = "select * from artifacts where artID ='" + (sender as Button).Name + "'";
 
@@ -218,11 +219,42 @@ namespace SClab2
                 {
                     while (reader.Read())
                     {
+                        curart = reader.GetString(1);
                         if (reader.GetString(1) == "Journal")
                             nolim = 2;
                         if (reader.GetString(10) == "available")
                         {
                             databaseConnection.Close();
+                            String nolimquery = "SELECT COUNT(glob.artType) FROM (SELECT artifacts.artType, issued.userID FROM artifacts INNER JOIN issued ON artifacts.artID = issued.artID) AS glob WHERE glob.artType = '" + curart + "' AND glob.userID = '" + uid + "';";
+                            databaseConnection.Open();
+                            using (MySqlCommand nolimcom = new MySqlCommand(nolimquery, databaseConnection))
+                            {
+                                nolimcom.CommandTimeout = 60;
+                                reader = nolimcom.ExecuteReader();
+                                if (reader.HasRows)
+                                {
+                                    while (reader.Read())
+                                    {
+                                        if (reader.GetInt32(0) >= 3 && curart == "Book")
+                                        {
+                                            MessageBox.Show("You can't issue more that 3 Books.");
+                                            return;
+                                        }
+                                        else if (reader.GetInt32(0) >= 2 && curart == "Journal")
+                                        {
+                                            MessageBox.Show("You can't issue more that 2 Journals.");
+                                            return;
+                                        }
+
+                                    }
+                                }
+                                else
+                                {
+                                    Console.WriteLine("No rows found.");
+                                }
+                                databaseConnection.Close();
+                            }
+
 
                             string current = DateTime.Now.ToString("yyyy-MM-dd");
                             string onemonth = DateTime.Now.AddMonths(1).ToString("yyyy-MM-dd");
