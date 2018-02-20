@@ -225,11 +225,12 @@ namespace SClab2
                             try
                             {
 
-                                string dateTime = DateTime.Now.ToString("yyyy-MM-dd");
-                                string dateTime1 = DateTime.Now.AddMonths(1).ToString("yyyy-MM-dd");
+                                string current = DateTime.Now.ToString("yyyy-MM-dd");
+                                string onemonth = DateTime.Now.AddMonths(1).ToString("yyyy-MM-dd");
+                                string halfmonth = DateTime.Now.AddDays(15).ToString("yyyy-MM-dd");
 
                                 databaseConnection.Open();
-                                string query1 = "INSERT INTO issued (artID,userID,issueDate,returnDate,fine) VALUES ('" + (sender as Button).Name + "','" + uid + "','" + dateTime + "','" + dateTime1 + "' ,'" + 0 + "')";
+                                string query1 = "INSERT INTO issued (artID,userID,issueDate,returnDate,fine) VALUES ('" + (sender as Button).Name + "','" + uid + "','" + current + "','" + onemonth + "' ,'" + 0 + "')";
                                 using (MySqlCommand command = new MySqlCommand(query1, databaseConnection))
                                 {
                                     command.CommandTimeout = 60;
