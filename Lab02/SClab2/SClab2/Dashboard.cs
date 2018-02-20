@@ -11,12 +11,14 @@ using MySql.Data.MySqlClient;
 
 namespace SClab2
 {
+
     public partial class Dashboard : Form
     {
+        public int uid = 0;
         public Dashboard()
         {
             InitializeComponent();
-            tabAllRecords.TabPages.Remove(issue);
+            tabAllRecords.TabPages.Remove(login);
         }
 
         private void allRecordsButton_Click_1(object sender, EventArgs e)
@@ -68,6 +70,7 @@ namespace SClab2
 
         private void buttonTitle_Click_1(object sender, EventArgs e)
         {
+            listBoxSearch.Controls.Clear();
             listBoxSearch.Items.Clear();
             textBoxGenre.Clear();
             textBoxAuthor.Clear();
@@ -93,12 +96,27 @@ namespace SClab2
 
                 if (reader.HasRows)
                 {
+                    int i = 0, x = 0;
                     while (reader.Read())
                     {
                         string[] row = { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), 
                                          reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7), reader.GetString(8), reader.GetString(9), reader.GetString(10), };
                         listBoxSearch.Items.Add(row[1]+"            "+row[2] + " by " + row[3]  +" is " + row[10]);
                         // allRecordsListBox.Items.Add(row[2]);
+                        Button btn = new Button();
+
+                        btn.Location = new Point(600, 0 + x);
+                        btn.BackColor = System.Drawing.Color.White;
+                        btn.Text = "Issue";
+                        btn.Height = 18;
+                        btn.Font = new Font(btn.Font.FontFamily, 7);
+                        btn.Name = reader.GetString(0);
+
+                        //Hook our button up to our generic button handler
+                        btn.Click += new EventHandler(btn_Click);
+                        listBoxSearch.Controls.Add(btn);
+                        i += 10;
+                        x += 20;
 
                     }
                 }
@@ -118,6 +136,7 @@ namespace SClab2
 
         private void buttonGenre_Click(object sender, EventArgs e)
         {
+            listBoxSearch.Controls.Clear();
             listBoxSearch.Items.Clear();
             textBoxTitle.Clear();
             textBoxAuthor.Clear();
@@ -142,13 +161,28 @@ namespace SClab2
 
                 if (reader.HasRows)
                 {
-
+                    int i = 0;
+                    int x = 0;
                     while (reader.Read())
                     {
                         string[] row = { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), 
                                          reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7), reader.GetString(8), reader.GetString(9), reader.GetString(10), };
-                        listBoxSearch.Items.Add(row[1] + "            " + row[5] + "       " + row[2] + " by " + row[3] + " is " + row[10]);
+                        listBoxSearch.Items.Add(row[1] + "\t\t" + row[5] + "\t\t" + row[2] + " by " + row[3] + " is " + row[10]);
                         // allRecordsListBox.Items.Add(row[2]);
+                        Button btn = new Button();
+
+                        btn.Location = new Point(600, 0 + x);
+                        btn.BackColor = System.Drawing.Color.White;
+                        btn.Text = "Issue";
+                        btn.Height = 18;
+                        btn.Font = new Font(btn.Font.FontFamily, 7);
+                        btn.Name = reader.GetString(0);
+
+                        //Hook our button up to our generic button handler
+                        btn.Click += new EventHandler(btn_Click);
+                        listBoxSearch.Controls.Add(btn);
+                        i += 10;
+                        x += 20;
 
                     }
                 }
@@ -165,9 +199,100 @@ namespace SClab2
             }
 
         }
+        void btn_Click(object sender, EventArgs e)
+        {
+            string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=LMS;";
+            string query = "select * from artifacts where artID ='" + (sender as Button).Name + "'";
+
+            MySqlConnection databaseConnection = new MySqlConnection(connectionString);
+            MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
+            commandDatabase.CommandTimeout = 60;
+            MySqlDataReader reader;
+
+            try
+            {
+                databaseConnection.Open();
+                reader = commandDatabase.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        if (reader.GetString(10) == "available")
+                        {
+                            databaseConnection.Close();
+
+                            try
+                            {
+
+                                string dateTime = DateTime.Now.ToString("yyyy-MM-dd");
+                                string dateTime1 = DateTime.Now.AddMonths(1).ToString("yyyy-MM-dd");
+
+                                databaseConnection.Open();
+                                string query1 = "INSERT INTO issued (artID,userID,issueDate,returnDate,fine) VALUES ('" + (sender as Button).Name + "','" + uid + "','" + dateTime + "','" + dateTime1 + "' ,'" + 0 + "')";
+                                using (MySqlCommand command = new MySqlCommand(query1, databaseConnection))
+                                {
+                                    command.CommandTimeout = 60;
+                                    int result = command.ExecuteNonQuery();
+
+                                    // Check Error
+                                    if (result < 0)
+                                        Console.WriteLine("Error inserting data into Database!");
+                                    else
+                                    {
+                                        string query2 = "UPDATE artifacts  SET available = 'not available' WHERE artID = '" + (sender as Button).Name + "';";
+                                        using (MySqlCommand command1 = new MySqlCommand(query2, databaseConnection))
+                                        {
+                                            command1.CommandTimeout = 60;
+                                            int result1 = command1.ExecuteNonQuery();
+
+                                            // Check Error
+                                            if (result1 < 0)
+                                                Console.WriteLine("Error inserting data into Database!");
+                                            else
+                                            {
+                                                //MessageBox.Show("Availibilty Updated!");
+                                            }
+                                            databaseConnection.Close();
+                                        }
+
+                                        MessageBox.Show("Resource Issued!");
+                                        databaseConnection.Close();
+                                        return;
+                                    }
+                                    
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                            }
+                            
+                        }
+                        else
+                        {
+                            MessageBox.Show("Not Available!");
+                        }
+
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No rows found.");
+                }
+
+                databaseConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
 
         private void buttonAuthor_Click(object sender, EventArgs e)
         {
+            listBoxSearch.Controls.Clear();
             listBoxSearch.Items.Clear();
             textBoxTitle.Clear();
             textBoxGenre.Clear();
@@ -192,13 +317,28 @@ namespace SClab2
 
                 if (reader.HasRows)
                 {
+                    int i = 0, x = 0;
 
                     while (reader.Read())
                     {
                         string[] row = { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), 
                                          reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7), reader.GetString(8), reader.GetString(9), reader.GetString(10), };
-                        listBoxSearch.Items.Add(row[1] + "            " + row[2] + " by " + row[3] + " is " + row[10] + "          " + row[5]);
+                        listBoxSearch.Items.Add(row[1] + "\t\t" + row[2] + " by " + row[3] + " is " + row[10] + "\t\t" + row[5]);
                         // allRecordsListBox.Items.Add(row[2]);
+                        Button btn = new Button();
+
+                        btn.Location = new Point(600, 0 + x);
+                        btn.BackColor = System.Drawing.Color.White;
+                        btn.Text = "Issue";
+                        btn.Height = 18;
+                        btn.Font = new Font(btn.Font.FontFamily, 7);
+                        btn.Name = reader.GetString(0);
+
+                        //Hook our button up to our generic button handler
+                        btn.Click += new EventHandler(btn_Click);
+                        listBoxSearch.Controls.Add(btn);
+                        i += 10;
+                        x += 20;
 
                     }
                 }
@@ -317,10 +457,11 @@ namespace SClab2
 
         public void logout_Click(object sender, EventArgs e)
         {
+            uid = 0;
             logout.Hide();
             button1.Show();
             registeration.Show();
-            tabAllRecords.TabPages.Remove(issue);
+            tabAllRecords.TabPages.Remove(login);
         }
 
         private void allRecordsListBox_SelectedIndexChanged(object sender, EventArgs e)

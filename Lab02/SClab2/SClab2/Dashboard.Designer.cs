@@ -32,28 +32,24 @@
             this.button1 = new System.Windows.Forms.Button();
             this.registeration = new System.Windows.Forms.Button();
             this.logout = new System.Windows.Forms.Button();
-            this.issue = new System.Windows.Forms.TabPage();
             this.login = new System.Windows.Forms.TabPage();
-            this.listBoxSearch = new System.Windows.Forms.ListBox();
-            this.labelAuthor = new System.Windows.Forms.Label();
-            this.labelTitle = new System.Windows.Forms.Label();
-            this.labelGenre = new System.Windows.Forms.Label();
-            this.buttonAuthor = new System.Windows.Forms.Button();
-            this.buttonTitle = new System.Windows.Forms.Button();
-            this.buttonGenre = new System.Windows.Forms.Button();
-            this.textBoxAuthor = new System.Windows.Forms.TextBox();
-            this.textBoxTitle = new System.Windows.Forms.TextBox();
             this.textBoxGenre = new System.Windows.Forms.TextBox();
+            this.textBoxTitle = new System.Windows.Forms.TextBox();
+            this.textBoxAuthor = new System.Windows.Forms.TextBox();
+            this.buttonGenre = new System.Windows.Forms.Button();
+            this.buttonTitle = new System.Windows.Forms.Button();
+            this.buttonAuthor = new System.Windows.Forms.Button();
+            this.labelGenre = new System.Windows.Forms.Label();
+            this.labelTitle = new System.Windows.Forms.Label();
+            this.labelAuthor = new System.Windows.Forms.Label();
+            this.listBoxSearch = new System.Windows.Forms.ListBox();
             this.AllRecords = new System.Windows.Forms.TabPage();
-            this.journals = new System.Windows.Forms.Button();
-            this.books = new System.Windows.Forms.Button();
-            this.allRecordsLabel = new System.Windows.Forms.Label();
-            this.allRecordsListBox = new System.Windows.Forms.ListBox();
             this.allRecordsButton = new System.Windows.Forms.Button();
+            this.allRecordsListBox = new System.Windows.Forms.ListBox();
+            this.allRecordsLabel = new System.Windows.Forms.Label();
+            this.books = new System.Windows.Forms.Button();
+            this.journals = new System.Windows.Forms.Button();
             this.tabAllRecords = new System.Windows.Forms.TabControl();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.issue.SuspendLayout();
             this.login.SuspendLayout();
             this.AllRecords.SuspendLayout();
             this.tabAllRecords.SuspendLayout();
@@ -104,18 +100,6 @@
             this.logout.Visible = false;
             this.logout.Click += new System.EventHandler(this.logout_Click);
             // 
-            // issue
-            // 
-            this.issue.Controls.Add(this.textBox1);
-            this.issue.Controls.Add(this.listBox1);
-            this.issue.Location = new System.Drawing.Point(4, 28);
-            this.issue.Name = "issue";
-            this.issue.Padding = new System.Windows.Forms.Padding(3);
-            this.issue.Size = new System.Drawing.Size(1181, 358);
-            this.issue.TabIndex = 2;
-            this.issue.Text = "Issue";
-            this.issue.UseVisualStyleBackColor = true;
-            // 
             // login
             // 
             this.login.Controls.Add(this.listBoxSearch);
@@ -137,73 +121,31 @@
             this.login.Text = "Search";
             this.login.UseVisualStyleBackColor = true;
             // 
-            // listBoxSearch
+            // textBoxGenre
             // 
-            this.listBoxSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listBoxSearch.Font = new System.Drawing.Font("Maiandra GD", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBoxSearch.FormattingEnabled = true;
-            this.listBoxSearch.ItemHeight = 22;
-            this.listBoxSearch.Location = new System.Drawing.Point(35, 149);
-            this.listBoxSearch.Margin = new System.Windows.Forms.Padding(4);
-            this.listBoxSearch.Name = "listBoxSearch";
-            this.listBoxSearch.Size = new System.Drawing.Size(911, 88);
-            this.listBoxSearch.TabIndex = 9;
-            this.listBoxSearch.SelectedIndexChanged += new System.EventHandler(this.listBoxSearch_SelectedIndexChanged);
+            this.textBoxGenre.Location = new System.Drawing.Point(257, 26);
+            this.textBoxGenre.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxGenre.Name = "textBoxGenre";
+            this.textBoxGenre.Size = new System.Drawing.Size(391, 27);
+            this.textBoxGenre.TabIndex = 0;
+            this.textBoxGenre.TextChanged += new System.EventHandler(this.textBoxGenre_TextChanged);
             // 
-            // labelAuthor
+            // textBoxTitle
             // 
-            this.labelAuthor.AutoSize = true;
-            this.labelAuthor.Font = new System.Drawing.Font("Maiandra GD", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAuthor.Location = new System.Drawing.Point(31, 102);
-            this.labelAuthor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelAuthor.Name = "labelAuthor";
-            this.labelAuthor.Size = new System.Drawing.Size(203, 20);
-            this.labelAuthor.TabIndex = 8;
-            this.labelAuthor.Text = "Search by Author Name";
+            this.textBoxTitle.Location = new System.Drawing.Point(257, 63);
+            this.textBoxTitle.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxTitle.Name = "textBoxTitle";
+            this.textBoxTitle.Size = new System.Drawing.Size(391, 27);
+            this.textBoxTitle.TabIndex = 1;
+            this.textBoxTitle.TextChanged += new System.EventHandler(this.textBoxTitle_TextChanged);
             // 
-            // labelTitle
+            // textBoxAuthor
             // 
-            this.labelTitle.AutoSize = true;
-            this.labelTitle.Font = new System.Drawing.Font("Maiandra GD", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitle.Location = new System.Drawing.Point(31, 70);
-            this.labelTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(129, 20);
-            this.labelTitle.TabIndex = 7;
-            this.labelTitle.Text = "Search by Title";
-            // 
-            // labelGenre
-            // 
-            this.labelGenre.AutoSize = true;
-            this.labelGenre.Font = new System.Drawing.Font("Maiandra GD", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelGenre.Location = new System.Drawing.Point(31, 34);
-            this.labelGenre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelGenre.Name = "labelGenre";
-            this.labelGenre.Size = new System.Drawing.Size(141, 20);
-            this.labelGenre.TabIndex = 6;
-            this.labelGenre.Text = "Search by Genre";
-            // 
-            // buttonAuthor
-            // 
-            this.buttonAuthor.Location = new System.Drawing.Point(673, 96);
-            this.buttonAuthor.Margin = new System.Windows.Forms.Padding(4);
-            this.buttonAuthor.Name = "buttonAuthor";
-            this.buttonAuthor.Size = new System.Drawing.Size(100, 28);
-            this.buttonAuthor.TabIndex = 5;
-            this.buttonAuthor.Text = "Search";
-            this.buttonAuthor.UseVisualStyleBackColor = true;
-            this.buttonAuthor.Click += new System.EventHandler(this.buttonAuthor_Click);
-            // 
-            // buttonTitle
-            // 
-            this.buttonTitle.Location = new System.Drawing.Point(673, 60);
-            this.buttonTitle.Margin = new System.Windows.Forms.Padding(4);
-            this.buttonTitle.Name = "buttonTitle";
-            this.buttonTitle.Size = new System.Drawing.Size(100, 28);
-            this.buttonTitle.TabIndex = 4;
-            this.buttonTitle.Text = "Search";
-            this.buttonTitle.UseVisualStyleBackColor = true;
-            this.buttonTitle.Click += new System.EventHandler(this.buttonTitle_Click_1);
+            this.textBoxAuthor.Location = new System.Drawing.Point(257, 98);
+            this.textBoxAuthor.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxAuthor.Name = "textBoxAuthor";
+            this.textBoxAuthor.Size = new System.Drawing.Size(391, 27);
+            this.textBoxAuthor.TabIndex = 2;
             // 
             // buttonGenre
             // 
@@ -216,31 +158,73 @@
             this.buttonGenre.UseVisualStyleBackColor = true;
             this.buttonGenre.Click += new System.EventHandler(this.buttonGenre_Click);
             // 
-            // textBoxAuthor
+            // buttonTitle
             // 
-            this.textBoxAuthor.Location = new System.Drawing.Point(257, 98);
-            this.textBoxAuthor.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxAuthor.Name = "textBoxAuthor";
-            this.textBoxAuthor.Size = new System.Drawing.Size(391, 27);
-            this.textBoxAuthor.TabIndex = 2;
+            this.buttonTitle.Location = new System.Drawing.Point(673, 60);
+            this.buttonTitle.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonTitle.Name = "buttonTitle";
+            this.buttonTitle.Size = new System.Drawing.Size(100, 28);
+            this.buttonTitle.TabIndex = 4;
+            this.buttonTitle.Text = "Search";
+            this.buttonTitle.UseVisualStyleBackColor = true;
+            this.buttonTitle.Click += new System.EventHandler(this.buttonTitle_Click_1);
             // 
-            // textBoxTitle
+            // buttonAuthor
             // 
-            this.textBoxTitle.Location = new System.Drawing.Point(257, 63);
-            this.textBoxTitle.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxTitle.Name = "textBoxTitle";
-            this.textBoxTitle.Size = new System.Drawing.Size(391, 27);
-            this.textBoxTitle.TabIndex = 1;
-            this.textBoxTitle.TextChanged += new System.EventHandler(this.textBoxTitle_TextChanged);
+            this.buttonAuthor.Location = new System.Drawing.Point(673, 96);
+            this.buttonAuthor.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonAuthor.Name = "buttonAuthor";
+            this.buttonAuthor.Size = new System.Drawing.Size(100, 28);
+            this.buttonAuthor.TabIndex = 5;
+            this.buttonAuthor.Text = "Search";
+            this.buttonAuthor.UseVisualStyleBackColor = true;
+            this.buttonAuthor.Click += new System.EventHandler(this.buttonAuthor_Click);
             // 
-            // textBoxGenre
+            // labelGenre
             // 
-            this.textBoxGenre.Location = new System.Drawing.Point(257, 26);
-            this.textBoxGenre.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxGenre.Name = "textBoxGenre";
-            this.textBoxGenre.Size = new System.Drawing.Size(391, 27);
-            this.textBoxGenre.TabIndex = 0;
-            this.textBoxGenre.TextChanged += new System.EventHandler(this.textBoxGenre_TextChanged);
+            this.labelGenre.AutoSize = true;
+            this.labelGenre.Font = new System.Drawing.Font("Maiandra GD", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelGenre.Location = new System.Drawing.Point(31, 34);
+            this.labelGenre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelGenre.Name = "labelGenre";
+            this.labelGenre.Size = new System.Drawing.Size(141, 20);
+            this.labelGenre.TabIndex = 6;
+            this.labelGenre.Text = "Search by Genre";
+            // 
+            // labelTitle
+            // 
+            this.labelTitle.AutoSize = true;
+            this.labelTitle.Font = new System.Drawing.Font("Maiandra GD", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitle.Location = new System.Drawing.Point(31, 70);
+            this.labelTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelTitle.Name = "labelTitle";
+            this.labelTitle.Size = new System.Drawing.Size(129, 20);
+            this.labelTitle.TabIndex = 7;
+            this.labelTitle.Text = "Search by Title";
+            // 
+            // labelAuthor
+            // 
+            this.labelAuthor.AutoSize = true;
+            this.labelAuthor.Font = new System.Drawing.Font("Maiandra GD", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAuthor.Location = new System.Drawing.Point(31, 102);
+            this.labelAuthor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelAuthor.Name = "labelAuthor";
+            this.labelAuthor.Size = new System.Drawing.Size(203, 20);
+            this.labelAuthor.TabIndex = 8;
+            this.labelAuthor.Text = "Search by Author Name";
+            // 
+            // listBoxSearch
+            // 
+            this.listBoxSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBoxSearch.Font = new System.Drawing.Font("Maiandra GD", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxSearch.FormattingEnabled = true;
+            this.listBoxSearch.ItemHeight = 22;
+            this.listBoxSearch.Location = new System.Drawing.Point(35, 149);
+            this.listBoxSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.listBoxSearch.Name = "listBoxSearch";
+            this.listBoxSearch.Size = new System.Drawing.Size(911, 88);
+            this.listBoxSearch.TabIndex = 9;
+            this.listBoxSearch.SelectedIndexChanged += new System.EventHandler(this.listBoxSearch_SelectedIndexChanged);
             // 
             // AllRecords
             // 
@@ -258,41 +242,17 @@
             this.AllRecords.Text = "All Records";
             this.AllRecords.UseVisualStyleBackColor = true;
             // 
-            // journals
+            // allRecordsButton
             // 
-            this.journals.Font = new System.Drawing.Font("Maiandra GD", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.journals.Location = new System.Drawing.Point(477, 22);
-            this.journals.Margin = new System.Windows.Forms.Padding(4);
-            this.journals.Name = "journals";
-            this.journals.Size = new System.Drawing.Size(100, 28);
-            this.journals.TabIndex = 4;
-            this.journals.Text = "Journals";
-            this.journals.UseVisualStyleBackColor = true;
-            this.journals.Click += new System.EventHandler(this.journals_Click);
-            // 
-            // books
-            // 
-            this.books.Font = new System.Drawing.Font("Maiandra GD", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.books.Location = new System.Drawing.Point(353, 22);
-            this.books.Margin = new System.Windows.Forms.Padding(4);
-            this.books.Name = "books";
-            this.books.Size = new System.Drawing.Size(100, 28);
-            this.books.TabIndex = 3;
-            this.books.Text = "Books";
-            this.books.UseVisualStyleBackColor = true;
-            this.books.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // allRecordsLabel
-            // 
-            this.allRecordsLabel.AutoSize = true;
-            this.allRecordsLabel.Font = new System.Drawing.Font("Maiandra GD", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.allRecordsLabel.Location = new System.Drawing.Point(33, 26);
-            this.allRecordsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.allRecordsLabel.Name = "allRecordsLabel";
-            this.allRecordsLabel.Size = new System.Drawing.Size(144, 24);
-            this.allRecordsLabel.TabIndex = 2;
-            this.allRecordsLabel.Text = "View Artifacts";
-            this.allRecordsLabel.Click += new System.EventHandler(this.allRecordsLabel_Click);
+            this.allRecordsButton.Font = new System.Drawing.Font("Maiandra GD", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.allRecordsButton.Location = new System.Drawing.Point(223, 22);
+            this.allRecordsButton.Margin = new System.Windows.Forms.Padding(4);
+            this.allRecordsButton.Name = "allRecordsButton";
+            this.allRecordsButton.Size = new System.Drawing.Size(100, 28);
+            this.allRecordsButton.TabIndex = 1;
+            this.allRecordsButton.Text = "All";
+            this.allRecordsButton.UseVisualStyleBackColor = true;
+            this.allRecordsButton.Click += new System.EventHandler(this.allRecordsButton_Click_1);
             // 
             // allRecordsListBox
             // 
@@ -307,23 +267,46 @@
             this.allRecordsListBox.TabIndex = 0;
             this.allRecordsListBox.SelectedIndexChanged += new System.EventHandler(this.allRecordsListBox_SelectedIndexChanged);
             // 
-            // allRecordsButton
+            // allRecordsLabel
             // 
-            this.allRecordsButton.Font = new System.Drawing.Font("Maiandra GD", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.allRecordsButton.Location = new System.Drawing.Point(223, 22);
-            this.allRecordsButton.Margin = new System.Windows.Forms.Padding(4);
-            this.allRecordsButton.Name = "allRecordsButton";
-            this.allRecordsButton.Size = new System.Drawing.Size(100, 28);
-            this.allRecordsButton.TabIndex = 1;
-            this.allRecordsButton.Text = "All";
-            this.allRecordsButton.UseVisualStyleBackColor = true;
-            this.allRecordsButton.Click += new System.EventHandler(this.allRecordsButton_Click_1);
+            this.allRecordsLabel.AutoSize = true;
+            this.allRecordsLabel.Font = new System.Drawing.Font("Maiandra GD", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.allRecordsLabel.Location = new System.Drawing.Point(33, 26);
+            this.allRecordsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.allRecordsLabel.Name = "allRecordsLabel";
+            this.allRecordsLabel.Size = new System.Drawing.Size(144, 24);
+            this.allRecordsLabel.TabIndex = 2;
+            this.allRecordsLabel.Text = "View Artifacts";
+            this.allRecordsLabel.Click += new System.EventHandler(this.allRecordsLabel_Click);
+            // 
+            // books
+            // 
+            this.books.Font = new System.Drawing.Font("Maiandra GD", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.books.Location = new System.Drawing.Point(353, 22);
+            this.books.Margin = new System.Windows.Forms.Padding(4);
+            this.books.Name = "books";
+            this.books.Size = new System.Drawing.Size(100, 28);
+            this.books.TabIndex = 3;
+            this.books.Text = "Books";
+            this.books.UseVisualStyleBackColor = true;
+            this.books.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // journals
+            // 
+            this.journals.Font = new System.Drawing.Font("Maiandra GD", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.journals.Location = new System.Drawing.Point(477, 22);
+            this.journals.Margin = new System.Windows.Forms.Padding(4);
+            this.journals.Name = "journals";
+            this.journals.Size = new System.Drawing.Size(100, 28);
+            this.journals.TabIndex = 4;
+            this.journals.Text = "Journals";
+            this.journals.UseVisualStyleBackColor = true;
+            this.journals.Click += new System.EventHandler(this.journals_Click);
             // 
             // tabAllRecords
             // 
             this.tabAllRecords.Controls.Add(this.AllRecords);
             this.tabAllRecords.Controls.Add(this.login);
-            this.tabAllRecords.Controls.Add(this.issue);
             this.tabAllRecords.Font = new System.Drawing.Font("Maiandra GD", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabAllRecords.Location = new System.Drawing.Point(16, 56);
             this.tabAllRecords.Margin = new System.Windows.Forms.Padding(4);
@@ -331,26 +314,6 @@
             this.tabAllRecords.SelectedIndex = 0;
             this.tabAllRecords.Size = new System.Drawing.Size(1189, 390);
             this.tabAllRecords.TabIndex = 2;
-            // 
-            // listBox1
-            // 
-            this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listBox1.Font = new System.Drawing.Font("Maiandra GD", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 22;
-            this.listBox1.Location = new System.Drawing.Point(21, 85);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(1136, 264);
-            this.listBox1.TabIndex = 1;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(154, 20);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(381, 27);
-            this.textBox1.TabIndex = 2;
             // 
             // Dashboard
             // 
@@ -365,8 +328,6 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Dashboard";
             this.Text = "Library Management System";
-            this.issue.ResumeLayout(false);
-            this.issue.PerformLayout();
             this.login.ResumeLayout(false);
             this.login.PerformLayout();
             this.AllRecords.ResumeLayout(false);
@@ -384,8 +345,7 @@
         public System.Windows.Forms.Button button1;
         public System.Windows.Forms.Button registeration;
         public System.Windows.Forms.Button logout;
-        public System.Windows.Forms.TabPage issue;
-        private System.Windows.Forms.TabPage login;
+        public System.Windows.Forms.TabPage login;
         private System.Windows.Forms.ListBox listBoxSearch;
         private System.Windows.Forms.Label labelAuthor;
         private System.Windows.Forms.Label labelTitle;
@@ -403,8 +363,6 @@
         private System.Windows.Forms.ListBox allRecordsListBox;
         private System.Windows.Forms.Button allRecordsButton;
         public System.Windows.Forms.TabControl tabAllRecords;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

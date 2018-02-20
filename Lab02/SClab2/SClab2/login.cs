@@ -40,7 +40,7 @@ namespace SClab2
             }
 
             string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=LMS;";
-            string query = "Select * From user where userPassword='" + pass.Text + "'and userEmail='" + email.Text +"'";
+            string query = "Select userID From user where userPassword='" + pass.Text + "'and userEmail='" + email.Text +"'";
 
             try
             {
@@ -54,13 +54,15 @@ namespace SClab2
 
                 if (reader.HasRows)
                 {
-                    
-                    dash.logout.Show();
-                    dash.registeration.Hide();
-                    dash.button1.Hide();
-                    this.Hide();
-                    dash.tabAllRecords.TabPages.Add(dash.issue);
-
+                    while (reader.Read())
+                    {
+                        dash.uid = reader.GetInt32("userID");
+                        dash.logout.Show();
+                        dash.registeration.Hide();
+                        dash.button1.Hide();
+                        this.Hide();
+                        dash.tabAllRecords.TabPages.Add(dash.login);
+                    }
                 }
                 else
                 {

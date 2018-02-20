@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.6.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 18, 2018 at 08:22 PM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 7.1.11
+-- Generation Time: Feb 20, 2018 at 04:19 PM
+-- Server version: 5.7.14
+-- PHP Version: 5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `library`
+-- Database: `lms`
 --
 
 -- --------------------------------------------------------
@@ -29,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `artifacts` (
-  `artID` int(11) NOT NULL PRIMARY KEY,
+  `artID` int(11) NOT NULL,
   `artType` varchar(50) NOT NULL,
   `artName` varchar(50) NOT NULL,
   `author` varchar(50) NOT NULL,
@@ -63,7 +61,8 @@ CREATE TABLE `issued` (
   `artID` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
   `issueDate` date NOT NULL,
-  `returnDate` date NOT NULL
+  `returnDate` date NOT NULL,
+  `fine` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -73,12 +72,11 @@ CREATE TABLE `issued` (
 --
 
 CREATE TABLE `user` (
-  `userID` int(11)  NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `userID` int(11) NOT NULL,
   `userName` varchar(50) NOT NULL,
   `userPassword` varchar(50) NOT NULL,
   `userEmail` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
---
 
 --
 -- Dumping data for table `user`
@@ -88,6 +86,15 @@ INSERT INTO `user` (`userID`, `userName`, `userPassword`, `userEmail`) VALUES
 (1, 'bisma', 'asdf', 'bisma@gmail.com'),
 (2, 'ali', 'sds', 'ali@gmail.com');
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `artifacts`
+--
+ALTER TABLE `artifacts`
+  ADD PRIMARY KEY (`artID`);
 
 --
 -- Indexes for table `issued`
@@ -97,6 +104,24 @@ ALTER TABLE `issued`
   ADD KEY `artID` (`artID`),
   ADD KEY `userID` (`userID`);
 
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`userID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- Constraints for dumped tables
+--
 
 --
 -- Constraints for table `issued`
@@ -104,8 +129,10 @@ ALTER TABLE `issued`
 ALTER TABLE `issued`
   ADD CONSTRAINT `issued_ibfk_1` FOREIGN KEY (`artID`) REFERENCES `artifacts` (`artID`),
   ADD CONSTRAINT `issued_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+ALTER TABLE `issued`
+MODIFY issueID int(11) UNSIGNED AUTO_INCREMENT; 
