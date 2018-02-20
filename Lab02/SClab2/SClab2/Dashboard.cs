@@ -201,6 +201,7 @@ namespace SClab2
         }
         void btn_Click(object sender, EventArgs e)
         {
+            int nolim = 3;
             string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=LMS;";
             string query = "select * from artifacts where artID ='" + (sender as Button).Name + "'";
 
@@ -213,68 +214,63 @@ namespace SClab2
             {
                 databaseConnection.Open();
                 reader = commandDatabase.ExecuteReader();
-
                 if (reader.HasRows)
                 {
                     while (reader.Read())
                     {
+                        if (reader.GetString(1) == "Journal")
+                            nolim = 2;
                         if (reader.GetString(10) == "available")
                         {
                             databaseConnection.Close();
 
-                            try
+                            string current = DateTime.Now.ToString("yyyy-MM-dd");
+                            string onemonth = DateTime.Now.AddMonths(1).ToString("yyyy-MM-dd");
+                            string halfmonth = DateTime.Now.AddDays(15).ToString("yyyy-MM-dd");
+                            string query1 = "";
+                            if (nolim == 3)
+                                query1 = "INSERT INTO issued (artID,userID,issueDate,returnDate,fine) VALUES ('" + (sender as Button).Name + "','" + uid + "','" + current + "','" + onemonth + "' ,'" + 0 + "')";
+
+                            else if (nolim == 2)
+                                query1 = "INSERT INTO issued (artID,userID,issueDate,returnDate,fine) VALUES ('" + (sender as Button).Name + "','" + uid + "','" + current + "','" + halfmonth + "' ,'" + 0 + "')";
+                                
+                            databaseConnection.Open();
+                            using (MySqlCommand command = new MySqlCommand(query1, databaseConnection))
                             {
+                                command.CommandTimeout = 60;
+                                int result = command.ExecuteNonQuery();
 
-                                string current = DateTime.Now.ToString("yyyy-MM-dd");
-                                string onemonth = DateTime.Now.AddMonths(1).ToString("yyyy-MM-dd");
-                                string halfmonth = DateTime.Now.AddDays(15).ToString("yyyy-MM-dd");
-
-                                databaseConnection.Open();
-                                string query1 = "INSERT INTO issued (artID,userID,issueDate,returnDate,fine) VALUES ('" + (sender as Button).Name + "','" + uid + "','" + current + "','" + onemonth + "' ,'" + 0 + "')";
-                                using (MySqlCommand command = new MySqlCommand(query1, databaseConnection))
+                                // Check Error
+                                if (result < 0)
+                                    Console.WriteLine("Error inserting data into Database!");
+                                else
                                 {
-                                    command.CommandTimeout = 60;
-                                    int result = command.ExecuteNonQuery();
-
-                                    // Check Error
-                                    if (result < 0)
-                                        Console.WriteLine("Error inserting data into Database!");
-                                    else
+                                    string query2 = "UPDATE artifacts  SET available = 'not available' WHERE artID = '" + (sender as Button).Name + "';";
+                                    using (MySqlCommand command1 = new MySqlCommand(query2, databaseConnection))
                                     {
-                                        string query2 = "UPDATE artifacts  SET available = 'not available' WHERE artID = '" + (sender as Button).Name + "';";
-                                        using (MySqlCommand command1 = new MySqlCommand(query2, databaseConnection))
+                                        command1.CommandTimeout = 60;
+                                        int result1 = command1.ExecuteNonQuery();
+
+                                        // Check Error
+                                        if (result1 < 0)
+                                            Console.WriteLine("Error inserting data into Database!");
+                                        else
                                         {
-                                            command1.CommandTimeout = 60;
-                                            int result1 = command1.ExecuteNonQuery();
-
-                                            // Check Error
-                                            if (result1 < 0)
-                                                Console.WriteLine("Error inserting data into Database!");
-                                            else
-                                            {
-                                                //MessageBox.Show("Availibilty Updated!");
-                                            }
-                                            databaseConnection.Close();
+                                            //MessageBox.Show("Availibilty Updated!");
                                         }
-
-                                        MessageBox.Show("Resource Issued!");
                                         databaseConnection.Close();
-                                        return;
                                     }
-                                    
+
+                                    MessageBox.Show("Resource Issued!");
+                                    databaseConnection.Close();
+                                    return;
                                 }
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(ex.Message);
-                            }
-                            
+                            }                            
                         }
                         else
                         {
                             MessageBox.Show("Not Available!");
                         }
-
                     }
                 }
                 else
