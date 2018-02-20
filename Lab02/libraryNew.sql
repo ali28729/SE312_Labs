@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `artifacts` (
-  `artID` int(11) NOT NULL,
+  `artID` int(11) NOT NULL PRIMARY KEY,
   `artType` varchar(50) NOT NULL,
   `artName` varchar(50) NOT NULL,
   `author` varchar(50) NOT NULL,
@@ -73,11 +73,12 @@ CREATE TABLE `issued` (
 --
 
 CREATE TABLE `user` (
-  `userID` int(11) NOT NULL,
+  `userID` int(11)  NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `userName` varchar(50) NOT NULL,
   `userPassword` varchar(50) NOT NULL,
   `userEmail` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+--
 
 --
 -- Dumping data for table `user`
@@ -87,15 +88,6 @@ INSERT INTO `user` (`userID`, `userName`, `userPassword`, `userEmail`) VALUES
 (1, 'bisma', 'asdf', 'bisma@gmail.com'),
 (2, 'ali', 'sds', 'ali@gmail.com');
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `artifacts`
---
-ALTER TABLE `artifacts`
-  ADD PRIMARY KEY (`artID`);
 
 --
 -- Indexes for table `issued`
@@ -105,15 +97,6 @@ ALTER TABLE `issued`
   ADD KEY `artID` (`artID`),
   ADD KEY `userID` (`userID`);
 
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`userID`);
-
---
--- Constraints for dumped tables
---
 
 --
 -- Constraints for table `issued`

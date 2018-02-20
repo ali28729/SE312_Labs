@@ -7,3 +7,16 @@ c:\users\bisma\documents\visual studio 2013\Projects\SClab2\SClab2\bin\Debug\SCl
 c:\users\bisma\documents\visual studio 2013\Projects\SClab2\SClab2\obj\Debug\SClab2.exe
 c:\users\bisma\documents\visual studio 2013\Projects\SClab2\SClab2\obj\Debug\SClab2.pdb
 c:\users\bisma\documents\visual studio 2013\Projects\SClab2\SClab2\obj\Debug\SClab2.Dashboard.resources
+C:\Users\ali\Documents\GitHub\SE312_Labs\Lab02\SClab2\SClab2\obj\Debug\SClab2.Dashboard.resources
+C:\Users\ali\Documents\GitHub\SE312_Labs\Lab02\SClab2\SClab2\obj\Debug\SClab2.Properties.Resources.resources
+C:\Users\ali\Documents\GitHub\SE312_Labs\Lab02\SClab2\SClab2\obj\Debug\SClab2.csproj.GenerateResource.Cache
+C:\Users\ali\Documents\GitHub\SE312_Labs\Lab02\SClab2\SClab2\bin\Debug\SClab2.exe.config
+C:\Users\ali\Documents\GitHub\SE312_Labs\Lab02\SClab2\SClab2\bin\Debug\SClab2.exe
+C:\Users\ali\Documents\GitHub\SE312_Labs\Lab02\SClab2\SClab2\bin\Debug\SClab2.pdb
+C:\Users\ali\Documents\GitHub\SE312_Labs\Lab02\SClab2\SClab2\obj\Debug\SClab2.exe
+C:\Users\ali\Documents\GitHub\SE312_Labs\Lab02\SClab2\SClab2\obj\Debug\SClab2.pdb
+C:\Users\ali\Documents\GitHub\SE312_Labs\Lab02\SClab2\SClab2\obj\Debug\SClab2.Register.resources
+C:\Users\ali\Documents\GitHub\SE312_Labs\Lab02\SClab2\SClab2\obj\Debug\SClab2.csproj.CoreCompileInputs.cache
+C:\Users\ali\Documents\GitHub\SE312_Labs\Lab02\SClab2\SClab2\bin\Debug\MySql.Data.dll
+C:\Users\ali\Documents\GitHub\SE312_Labs\Lab02\SClab2\SClab2\bin\Debug\MySql.Data.xml
+C:\Users\ali\Documents\GitHub\SE312_Labs\Lab02\SClab2\SClab2\obj\Debug\SClab2.csprojResolveAssemblyReference.cache
