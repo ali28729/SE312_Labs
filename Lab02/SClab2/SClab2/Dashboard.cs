@@ -11,7 +11,6 @@ using MySql.Data.MySqlClient;
 
 namespace SClab2
 {
-
     public partial class Dashboard : Form
     {
         public int uid = 0;
@@ -19,6 +18,70 @@ namespace SClab2
         {
             InitializeComponent();
             tabAllRecords.TabPages.Remove(login);
+            int fine = 0;
+            string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=LMS; ";
+            string query = "SELECT artifacts.artID, artifacts.artType, issued.returnDate FROM artifacts INNER JOIN issued ON artifacts.artID = issued.artID";
+
+            MySqlConnection databaseConnection = new MySqlConnection(connectionString);
+            MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
+            commandDatabase.CommandTimeout = 60;
+            MySqlDataReader reader;
+
+            var list = new List<KeyValuePair<int, int>>();
+            try
+            {
+                databaseConnection.Open();
+                reader = commandDatabase.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    DateTime currentdate = DateTime.Now;
+
+                    while (reader.Read())
+                    {
+                        DateTime zeissue = reader.GetDateTime(2);
+                        double days = 0;
+                        if (DateTime.Compare(currentdate, zeissue) > 0)
+                        {
+                            days = (currentdate - zeissue).TotalDays;
+                            if (reader.GetString(1) == "Book")
+                                fine = (Convert.ToInt32(days) * 50);
+                            else if (reader.GetString(1) == "Journal")
+                                fine = (Convert.ToInt32(days) * 100);
+                            int artID = reader.GetInt32(0);
+                            list.Add(new KeyValuePair<int, int>(artID, fine));
+                        }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No rows found.");
+                }
+                databaseConnection.Close();
+                foreach (var element in list)
+                {
+                    string zefineq = "UPDATE issued  SET fine = '" + element.Value + "'  WHERE artID = '" + element.Key + "';";
+                    databaseConnection.Open();
+                    using (MySqlCommand zefine = new MySqlCommand(zefineq, databaseConnection))
+                    {
+                        zefine.CommandTimeout = 60;
+                        int result = zefine.ExecuteNonQuery();
+
+                        // Check Error
+                        if (result < 0)
+                            Console.WriteLine("Error inserting data into Database!");
+                        else
+                        {
+                            //ze fine iz succesfully inserted
+                        }
+                        databaseConnection.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+                        
         }
 
         private void allRecordsButton_Click_1(object sender, EventArgs e)
@@ -42,16 +105,17 @@ namespace SClab2
                
                 databaseConnection.Open();
                 reader = commandDatabase.ExecuteReader();
-
+                int iter = 1;
                 if (reader.HasRows)
                 {
+                   
                     while (reader.Read())
                     {
-                        string[] row = { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), 
+                        string[] row = { iter.ToString(), reader.GetString(1), reader.GetString(2), reader.GetString(3), 
                                          reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7), reader.GetString(8), reader.GetString(9), reader.GetString(10), };
                         allRecordsListBox.Items.Add(row[0] + ".  " + row[1] + "      " + row[2] + " by " + row[3] + "     " + row[4] + "      " + row[5] + "     " + row[6] + "      " + row[7] + "      " + row[8] + "       " + row[9] + "       " + row[10]);
                       // allRecordsListBox.Items.Add(row[2]);
-
+                        iter++;
                     }
                 }
                 else
@@ -80,8 +144,9 @@ namespace SClab2
 
         private void searchByTitle(string a)
         {
+            string blob = a + '%';
             string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=LMS;";
-            string query = "select * from artifacts where artName ='" + a + "'";
+            string query = "select * from artifacts where artName like '" + blob + "' ";
 
             MySqlConnection databaseConnection = new MySqlConnection(connectionString);
             MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
@@ -145,8 +210,9 @@ namespace SClab2
 
         private void searchByGenre(string a)
         {
+            string blob = a + '%';
             string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=LMS;";
-            string query = "select * from artifacts where genre ='" + a + "'";
+            string query = "select * from artifacts where genre like '" + blob + "' ";
 
             MySqlConnection databaseConnection = new MySqlConnection(connectionString);
             MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
@@ -199,6 +265,8 @@ namespace SClab2
             }
 
         }
+
+        //ZE BUTTON
         void btn_Click(object sender, EventArgs e)
         {
             int nolim = 3;
@@ -277,7 +345,7 @@ namespace SClab2
                                     Console.WriteLine("Error inserting data into Database!");
                                 else
                                 {
-                                    string query2 = "UPDATE artifacts  SET available = 'not available' WHERE artID = '" + (sender as Button).Name + "';";
+                                    string query2 = "UPDATE artifacts  SET available = 'not available' ,quantity = quantity -1  WHERE artID = '" + (sender as Button).Name + "';";
                                     using (MySqlCommand command1 = new MySqlCommand(query2, databaseConnection))
                                     {
                                         command1.CommandTimeout = 60;
@@ -330,8 +398,9 @@ namespace SClab2
         
         private void searchByAuthor(string a)
         {
+            string blob = a + '%';
             string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=LMS;";
-            string query = "select * from artifacts where author ='" + a + "'";
+            string query = "select * from artifacts where author like '" + blob + "' ";
 
             MySqlConnection databaseConnection = new MySqlConnection(connectionString);
             MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
@@ -352,7 +421,7 @@ namespace SClab2
                     {
                         string[] row = { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), 
                                          reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7), reader.GetString(8), reader.GetString(9), reader.GetString(10), };
-                        listBoxSearch.Items.Add(row[1] + "\t\t" + row[2] + " by " + row[3] + " is " + row[10] + "\t\t" + row[5]);
+                        listBoxSearch.Items.Add(row[1] + "\t\t" + row[2] + " by " + row[3] + " is " + row[10] + "\t\t");
                         // allRecordsListBox.Items.Add(row[2]);
                         Button btn = new Button();
 
@@ -410,13 +479,14 @@ namespace SClab2
 
                 if (reader.HasRows)
                 {
+                    int iter = 1;
                     while (reader.Read())
                     {
-                        string[] row = { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3),
+                        string[] row = { iter.ToString(), reader.GetString(1), reader.GetString(2), reader.GetString(3),
                                          reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7), reader.GetString(8), reader.GetString(9), reader.GetString(10), };
                         allRecordsListBox.Items.Add(row[0] + ".  " + row[1] + "      " + row[2] + " by " + row[3] + "     " + row[4] + "      " + row[5] + "     " + row[6] + "      " + row[7] + "      " + row[8] + "       " + row[9] + "       " + row[10]);
                         // allRecordsListBox.Items.Add(row[2]);
-
+                        iter++;
                     }
                 }
                 else
@@ -448,11 +518,13 @@ namespace SClab2
                 databaseConnection.Open();
                 reader = commandDatabase.ExecuteReader();
                 if (reader.HasRows){
+                    int iter = 1;
                     while (reader.Read()){
-                        string[] row = { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3),
+                        string[] row = { iter.ToString(), reader.GetString(1), reader.GetString(2), reader.GetString(3),
                                          reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7), reader.GetString(8), reader.GetString(9), reader.GetString(10), };
                         allRecordsListBox.Items.Add(row[0] + ".  " + row[1] + "      " + row[2] + " by " + row[3] + "     " + row[4] + "      " + row[5] + "     " + row[6] + "      " + row[7] + "      " + row[8] + "       " + row[9] + "       " + row[10]);
                         // allRecordsListBox.Items.Add(row[2]);
+                        iter++;
                     }
                 }
                 else
