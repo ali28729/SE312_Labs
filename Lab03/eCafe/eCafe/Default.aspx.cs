@@ -13,6 +13,11 @@ namespace eCafe
 
         private void Page_Load(object sender, System.EventArgs e)
         {
+            userTableCreation();
+        }
+
+        protected void userTableCreation()
+        {
             //Use a string variable to hold the ConnectionString.
             string connectString = "Provider=Microsoft.Jet.OLEDB.4.0;"
             + "Data Source=|DataDirectory|\\cafe.mdb";
@@ -97,12 +102,17 @@ namespace eCafe
                 QuantityCell.Text = reader["quantity"].ToString();
                 detailsRow.Cells.Add(QuantityCell);
 
+                TableCell tabButton = new TableCell();
                 Button button = new Button();
                 button.Click += new EventHandler(deluser_button_Click);
+                button.Text = "Delete";
                 button.ID = reader["ID"].ToString();
+                //Button.CssClass = "btn btn-default";
+                tabButton.Controls.Add(button);
+                detailsRow.Cells.Add(tabButton);
+                //DisplayTable.Rows[0].Cells[0].Controls.Add(button);
 
                 DisplayTable.Rows.Add(detailsRow);
-
             }
 
             //Close the reader and the related connection.
@@ -113,7 +123,19 @@ namespace eCafe
         protected void deluser_button_Click(object sender, EventArgs e)
         {
             Button button = sender as Button;
-            // identify which button was clicked and perform necessary actions
+            int buttonID = Convert.ToInt32(button.ID);
+            string connectString = "Provider=Microsoft.Jet.OLEDB.4.0;" + "Data Source=|DataDirectory|\\cafe.mdb";
+            OleDbConnection cn = new OleDbConnection(connectString);
+            cn.Open();
+            string selectString = "  DELETE FROM menu WHERE ID = " + buttonID + " ";
+            OleDbCommand cmd = new OleDbCommand(selectString, cn);   
+            int reader = (int)cmd.ExecuteNonQuery();
+            if (reader >= 0) { }
+            else
+            {
+                Console.WriteLine("Error deleting data from Database!");
+            }
+            cn.Close();
         }
     }
 }
