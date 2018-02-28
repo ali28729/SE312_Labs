@@ -11,6 +11,11 @@
         <h2>Users</h2>
         <asp:Table ID="userTable" class="table table-striped" runat="server"></asp:Table>
     </div>
+    <br>
+    <div class="well">
+        <h2>Order</h2>
+        <asp:Table ID="orderTable" class="table table-striped" runat="server"></asp:Table>
+    </div>
 
 <%--    <div class="jumbotron">
         <h1>ASP.NET</h1>

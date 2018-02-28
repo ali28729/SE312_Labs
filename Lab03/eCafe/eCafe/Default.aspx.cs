@@ -24,6 +24,7 @@ namespace eCafe
         {
             menuTableCreation();
             userTableCreation();
+            orderTableCreation();
         }
 
         protected void menuTableCreation()
@@ -229,7 +230,7 @@ namespace eCafe
                         Button button = new Button();
                         button.Click += new EventHandler(deluser_button_Click);
                         button.Text = "Delete";
-                        button.ID = reader["user_id"].ToString() + "a";
+                        button.ID = "a" + reader["user_id"].ToString();
                         //Button.CssClass = "btn btn-default";
                         tabButton.Controls.Add(button);
                         detailsRow.Cells.Add(tabButton);
@@ -280,7 +281,88 @@ namespace eCafe
             }
         }
 
+        protected void orderTableCreation()
+        {
+            string connectString = "datasource=127.0.0.1;port=3306;username=root;password=;database=ecafe; ";
 
+            using (var conn = new MySqlConnection(connectString))
+            using (var cmd = conn.CreateCommand())
+            {
+                conn.Open();
+                cmd.CommandText = "SELECT * FROM order_history";
+                using (var reader = cmd.ExecuteReader())
+                {
+                    //Set a table width.
+                    orderTable.Width = Unit.Percentage(90.00);
+                    //Create a new row for adding a table heading.
+                    TableRow tableHeading = new TableRow();
+
+                    //Create and add the cells that contain the Customer ID column heading text.
+                    TableHeaderCell IDHeading = new TableHeaderCell();
+                    IDHeading.Text = "Item Order ID";
+                    IDHeading.HorizontalAlign = HorizontalAlign.Left;
+                    tableHeading.Cells.Add(IDHeading);
+
+                    //Create and add the cells that contain the Contact Name column heading text.
+                    TableHeaderCell NameHeading = new TableHeaderCell();
+                    NameHeading.Text = "Customer ID";
+                    NameHeading.HorizontalAlign = HorizontalAlign.Left;
+                    tableHeading.Cells.Add(NameHeading);
+
+                    //Create and add the cells that contain the Phone column heading text.
+                    TableHeaderCell TypeHeading = new TableHeaderCell();
+                    TypeHeading.Text = "Time";
+                    TypeHeading.HorizontalAlign = HorizontalAlign.Left;
+                    tableHeading.Cells.Add(TypeHeading);
+
+                    //Create and add the cells that contain the Phone column heading text.
+                    TableHeaderCell PriceHeading = new TableHeaderCell();
+                    PriceHeading.Text = "Date";
+                    PriceHeading.HorizontalAlign = HorizontalAlign.Left;
+                    tableHeading.Cells.Add(PriceHeading);
+
+                    //Create and add the cells that contain the Phone column heading text.
+                    TableHeaderCell QuantityHeading = new TableHeaderCell();
+                    QuantityHeading.Text = "Total Amount";
+                    QuantityHeading.HorizontalAlign = HorizontalAlign.Left;
+                    tableHeading.Cells.Add(QuantityHeading);
+
+                    orderTable.Rows.Add(tableHeading);
+                    DateTime currentdate = DateTime.Now.AddDays(-1);
+                    //Loop through the resultant data selection and add the data value
+                    //for each respective column in the table.
+                    while (reader.Read())
+                    {
+                        DateTime zeorder = reader.GetDateTime(4);
+                        if (DateTime.Compare(currentdate, zeorder) < 0)
+                        {
+                            TableRow detailsRow = new TableRow();
+                            TableCell IDCell = new TableCell();
+                            IDCell.Text = reader["order_id"].ToString();
+                            detailsRow.Cells.Add(IDCell);
+
+                            TableCell NameCell = new TableCell();
+                            NameCell.Text = reader["customer_id"].ToString();
+                            detailsRow.Cells.Add(NameCell);
+
+                            TableCell userCell = new TableCell();
+                            userCell.Text = reader["time"].ToString();
+                            detailsRow.Cells.Add(userCell);
+
+                            TableCell domainCell = new TableCell();
+                            domainCell.Text = reader["date"].ToString();
+                            detailsRow.Cells.Add(domainCell);
+
+                            TableCell QuantityCell = new TableCell();
+                            QuantityCell.Text = reader["total_amount"].ToString();
+
+                            detailsRow.Cells.Add(QuantityCell);
+                            orderTable.Rows.Add(detailsRow);
+                        }
+                    }
+                }
+            }
+        }
 
         protected void adduser_button_Click(object sender, EventArgs e)
         {
@@ -374,15 +456,13 @@ namespace eCafe
         protected void deluser_button_Click(object sender, EventArgs e)
         {
             Button button = sender as Button;
-            string buttonid = button.ID;
-            int UserID = Convert.ToInt32(buttonid[0]);
-
+            string buttonid = button.ID.Substring(1, button.ID.Length - 1);            
             string connectString = "datasource=127.0.0.1;port=3306;username=root;password=;database=ecafe; ";
             using (var conn = new MySqlConnection(connectString))
             using (var cmd = conn.CreateCommand())
             {
                 conn.Open();
-                cmd.CommandText = "  DELETE FROM user WHERE user_id = " + UserID + " ";
+                cmd.CommandText = "  DELETE FROM user WHERE user_id = " + Convert.ToInt32(buttonid);
                 int reader = cmd.ExecuteNonQuery();
                 if (reader >= 0)
                 {
