@@ -35,3 +35,5 @@ C:\Users\ali\Documents\GitHub\SE312_Labs\Lab03\eCafe\eCafe\obj\Debug\eCafe.cspro
 C:\Users\ali\Documents\GitHub\SE312_Labs\Lab03\eCafe\eCafe\obj\Debug\eCafe.csproj.CoreCompileInputs.cache
 C:\Users\ali\Documents\GitHub\SE312_Labs\Lab03\eCafe\eCafe\obj\Debug\eCafe.dll
 C:\Users\ali\Documents\GitHub\SE312_Labs\Lab03\eCafe\eCafe\obj\Debug\eCafe.pdb
+C:\Users\ali\Documents\GitHub\SE312_Labs\Lab03\eCafe\eCafe\bin\MySql.Data.dll
+C:\Users\ali\Documents\GitHub\SE312_Labs\Lab03\eCafe\eCafe\bin\MySql.Data.xml
