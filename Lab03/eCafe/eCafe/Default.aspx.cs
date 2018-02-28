@@ -229,7 +229,7 @@ namespace eCafe
                         Button button = new Button();
                         button.Click += new EventHandler(deluser_button_Click);
                         button.Text = "Delete";
-                        button.ID = reader["user_id"].ToString();
+                        button.ID = reader["user_id"].ToString() + "a";
                         //Button.CssClass = "btn btn-default";
                         tabButton.Controls.Add(button);
                         detailsRow.Cells.Add(tabButton);
@@ -374,7 +374,8 @@ namespace eCafe
         protected void deluser_button_Click(object sender, EventArgs e)
         {
             Button button = sender as Button;
-            int UserID = Convert.ToInt32(button.ID);
+            string buttonid = button.ID;
+            int UserID = Convert.ToInt32(buttonid[0]);
 
             string connectString = "datasource=127.0.0.1;port=3306;username=root;password=;database=ecafe; ";
             using (var conn = new MySqlConnection(connectString))
