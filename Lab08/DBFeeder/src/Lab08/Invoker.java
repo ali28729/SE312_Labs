@@ -14,12 +14,16 @@ public class Invoker {
     		else
     	        check = false;
         	System.out.println("\n\n\t\t>>Commit set to '"+check+"'<<");
+        	
+        	//Statement
     		System.out.print(">>Statement Class:");
             startTime = System.currentTimeMillis();
             insertRecord.statementClass(check);
             endTime = System.currentTimeMillis();
             duration = (endTime - startTime);
     		System.out.println("\t\t"+ duration +" milliseconds");
+    		
+    		//Prepared
     		insertRecord.truncateStudentTable();
     		System.out.print(">>Prepared Statement Class:");
             startTime = System.currentTimeMillis();
@@ -32,11 +36,41 @@ public class Invoker {
             endTime = System.currentTimeMillis();
             duration = (endTime - startTime);
     		System.out.println("\t"+ duration +" milliseconds");
+    		
+    		//Batch
+    			//statement
     		insertRecord.truncateStudentTable();
-    		System.out.print(">>Batch Update: ");
+    		System.out.print(">>Batch Update (Statement): ");
     		startTime = System.currentTimeMillis();
             try {
-    			insertRecord.batchUpdate(check);
+    			insertRecord.batchUpdateNPrepared(check);
+    		} catch (SQLException e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}
+            endTime = System.currentTimeMillis();
+            duration = endTime - startTime;
+    		System.out.println("\t"+ duration +" milliseconds");
+    			//Prepared
+    		insertRecord.truncateStudentTable();
+    		System.out.print(">>Batch Update (Prepared): ");
+    		startTime = System.currentTimeMillis();
+            try {
+    			insertRecord.batchUpdatePrepared(check);
+    		} catch (SQLException e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}
+            endTime = System.currentTimeMillis();
+            duration = endTime - startTime;
+    		System.out.println("\t"+ duration +" milliseconds");
+    		
+    		//STORED
+    		insertRecord.truncateStudentTable();
+    		System.out.print(">>Stored  Procedure: ");
+    		startTime = System.currentTimeMillis();
+            try {
+    			insertRecord.stored(check);
     		} catch (SQLException e) {
     			// TODO Auto-generated catch block
     			e.printStackTrace();
