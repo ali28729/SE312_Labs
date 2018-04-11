@@ -13,7 +13,7 @@ public class Invoker {
     	        check = true;
     		else
     	        check = false;
-        	System.out.println("\n\n\t\t>>Commit set to '"+check+"'<<");
+        	System.out.println("\n\n\t\t>>Auto Commit set to '"+check+"'<<");
         	
         	//Statement
     		System.out.print(">>Statement Class:");
