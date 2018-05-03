@@ -2,82 +2,59 @@ package Lab08;
 import java.sql.SQLException;
 public class Invoker {	
 	public static void main(String[] args) throws SQLException{
-		long startTime;
-		long endTime;
-		long duration;
 		boolean check;
-        DBManipulator insertRecord = new DBManipulator();  
+        DBManipulator test = new DBManipulator();  
     	System.out.println(">No. of Data Rows: 5000");
         for(int i=0; i<2; i++) {
         	if(i==1)
     	        check = true;
     		else
     	        check = false;
-        	System.out.println("\n\n\t\t>>Auto Commit set to '"+check+"'<<");
+        	System.out.println("\n\n\t\t>>Auto Commit set to '"+ check+"'<<");
         	
         	//Statement
     		System.out.print(">>Statement Class:");
-            startTime = System.currentTimeMillis();
-            insertRecord.statementClass(check);
-            endTime = System.currentTimeMillis();
-            duration = (endTime - startTime);
-    		System.out.println("\t\t"+ duration +" milliseconds");
+    		System.out.println("\t\t"+ test.statementClass(check) +" milliseconds");
     		
     		//Prepared
-    		insertRecord.truncateStudentTable();
+    		test.truncateTable();
     		System.out.print(">>Prepared Statement Class:");
-            startTime = System.currentTimeMillis();
             try {
-    			insertRecord.preparedStatementClass(check);
+        		System.out.println("\t"+ test.preparedStatementClass(check) +" milliseconds");
     		} catch (SQLException e) {
     			// TODO Auto-generated catch block
     			e.printStackTrace();
     		}
-            endTime = System.currentTimeMillis();
-            duration = (endTime - startTime);
-    		System.out.println("\t"+ duration +" milliseconds");
     		
     		//Batch
     			//statement
-    		insertRecord.truncateStudentTable();
+    		test.truncateTable();
     		System.out.print(">>Batch Update (Statement): ");
-    		startTime = System.currentTimeMillis();
             try {
-    			insertRecord.batchUpdateNPrepared(check);
+        		System.out.println("\t"+ test.batchUpdateNPrepared(check) +" milliseconds");
     		} catch (SQLException e) {
     			// TODO Auto-generated catch block
     			e.printStackTrace();
     		}
-            endTime = System.currentTimeMillis();
-            duration = endTime - startTime;
-    		System.out.println("\t"+ duration +" milliseconds");
     			//Prepared
-    		insertRecord.truncateStudentTable();
+    		test.truncateTable();
     		System.out.print(">>Batch Update (Prepared): ");
-    		startTime = System.currentTimeMillis();
             try {
-    			insertRecord.batchUpdatePrepared(check);
+        		System.out.println("\t"+ test.batchUpdatePrepared(check) +" milliseconds");
     		} catch (SQLException e) {
     			// TODO Auto-generated catch block
     			e.printStackTrace();
     		}
-            endTime = System.currentTimeMillis();
-            duration = endTime - startTime;
-    		System.out.println("\t"+ duration +" milliseconds");
-    		
+
     		//STORED
-    		insertRecord.truncateStudentTable();
+    		test.truncateTable();
     		System.out.print(">>Stored  Procedure: ");
-    		startTime = System.currentTimeMillis();
             try {
-    			insertRecord.stored(check);
+        		System.out.println("\t\t"+ test.stored(check) +" milliseconds");
     		} catch (SQLException e) {
     			// TODO Auto-generated catch block
     			e.printStackTrace();
     		}
-            endTime = System.currentTimeMillis();
-            duration = endTime - startTime;
-    		System.out.println("\t\t"+ duration +" milliseconds");
         }	
 	}
 }

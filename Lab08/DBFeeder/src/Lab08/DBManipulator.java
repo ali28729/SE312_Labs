@@ -19,28 +19,26 @@ public class DBManipulator{
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/university","root","");
-			standQuery = con.createStatement();
 		}
-		catch(Exception ex)
-		{
+		catch(Exception ex){
 			System.out.println("Error: "+ex);
 		}
 	}
 	
-	public void stored(boolean check) throws SQLException {
-		Random randName = new Random();
-		
+	public long stored(boolean check) throws SQLException {
 		if(check==true)
 	        con.setAutoCommit(true);
 		else
 			con.setAutoCommit(false);
-       
+		
+        long startTime = System.currentTimeMillis();
+        Random randReg = new Random();	
 		try {
 			String SQL = "{call user_proc (?, ?,?,?)}";
 	        callQuery = con.prepareCall (SQL);
 	        for(int i = 1; i <= 5000;i++){
-	           	callQuery.setString(1, generateName());
-	        	callQuery.setInt(2, randName.nextInt(99999) + 100000);
+	           	callQuery.setString(1, "blob");
+	        	callQuery.setInt(2, randReg.nextInt(99999) + 100000);
 	        	callQuery.setInt(3, 6);
 	        	callQuery.setString(4, "Islamabad");
 	        	callQuery.executeUpdate();
@@ -49,24 +47,28 @@ public class DBManipulator{
 		catch(Exception ex){
 			System.out.println(ex);
 		}
+		if(check == false)
+			con.commit();
+        long endTime = System.currentTimeMillis();
+		return endTime - startTime;
 	}
 	
-	public void statementClass(boolean check) throws SQLException {
-		String name = "";
-		int regNo;
-		int semester = 6;
-		String address = "Islamabad";
-		Random randName = new Random();
-		
+	public long statementClass(boolean check) throws SQLException {
 		if(check==true)
 	        con.setAutoCommit(true);
 		else
 			con.setAutoCommit(false);
-
+		standQuery = con.createStatement();
+        long startTime = System.currentTimeMillis();
+		String name = "";
+		int regNo;
+		int semester = 6;
+		String address = "Islamabad";
+		Random randReg = new Random();
 		try {
 			for(int i=0; i<5000; i++){
-				name = generateName();
-				regNo = randName.nextInt(99999) + 100000;
+				name = "blob";
+				regNo = randReg.nextInt(99999) + 100000;
 				String query = "INSERT INTO students (name, regNo, semester, address) VALUES ('"+name+"', '"+regNo+"', '"+semester+"', '"+address+"');";
 				ins = standQuery.executeUpdate(query);
 			}
@@ -74,61 +76,64 @@ public class DBManipulator{
 		catch(Exception ex){
 			System.out.println(ex);
 		}
+		if(check == false)
+			con.commit();
+        long endTime = System.currentTimeMillis();
+		return endTime - startTime;
 	}
-	public void preparedStatementClass(boolean check) throws SQLException {
-		String name = "";
-		int regNo;
-		int semester = 6;
-		String address = "Islamabad";
-		Random randName = new Random();
-		PreparedStatement stmt=con.prepareStatement("INSERT INTO students (name, regNo, semester, address) VALUES(?,?,?,?)");  
-		int count;
+	public long preparedStatementClass(boolean check) throws SQLException {
 		if(check==true)
 	        con.setAutoCommit(true);
 		else
 			con.setAutoCommit(false);
-
+		standQuery = con.createStatement();
+        long startTime = System.currentTimeMillis();
+		int regNo;
+		int semester = 6;
+		String address = "Islamabad";
+		Random randReg = new Random();
+		PreparedStatement stmt=con.prepareStatement("INSERT INTO students (name, regNo, semester, address) VALUES(?,?,?,?)");  
+		int count;
 		try {
 			for(int i=0; i<5000; i++){
-				name = generateName();	
-				regNo = randName.nextInt(99999) + 100000;	
+				String name = "blob";	
+				regNo = randReg.nextInt(99999) + 100000;	
 				stmt.setString(1,name);
 				stmt.setInt(2,regNo);
 				stmt.setInt(3,semester);
 				stmt.setString(4,address);		
 				count=stmt.executeUpdate();  
 			}
-
 		}
 		catch(Exception ex){
 			System.out.println(ex);
 		}
+		if(check == false)
+			con.commit();
+        long endTime = System.currentTimeMillis();
+        return endTime - startTime;
 	}
 	
-	public void batchUpdatePrepared(boolean check) throws SQLException {
-		
-		String name = "";
-		int regNo;
-		int semester = 6;
-		String address = "Islamabad";
-		Random randName = new Random();
-		  	
-		PreparedStatement stmt=con.prepareStatement("INSERT INTO students (name, regNo, semester, address) VALUES(?,?,?,?)"); 
-		
+	public long batchUpdatePrepared(boolean check) throws SQLException {
 		if(check==true)
 	        con.setAutoCommit(true);
 		else
 			con.setAutoCommit(false);
-		
+		standQuery = con.createStatement();
+        long startTime = System.currentTimeMillis();
+		String name = "blob";
+		int regNo;
+		int semester = 6;
+		String address = "Islamabad";
+		Random randReg = new Random();
+		  	
+		PreparedStatement stmt=con.prepareStatement("INSERT INTO students (name, regNo, semester, address) VALUES(?,?,?,?)"); 
         int[] count;
-
 		try {
 			for(int i=1; i<=5000; i++){
 				if(i%1000==0)
 					count = stmt.executeBatch();  
-				
-				name = generateName();
-				regNo = randName.nextInt(99999) + 100000;
+				regNo = randReg.nextInt(99999) + 100000;
 				stmt.setString(1,name);
 				stmt.setInt(2,regNo);
 				stmt.setInt(3,semester);
@@ -139,29 +144,30 @@ public class DBManipulator{
 		catch(Exception ex){
 			System.out.println(ex);
 		}
+		if(check == false)
+			con.commit();
+        long endTime = System.currentTimeMillis();
+        return endTime - startTime;
 	}
 	
-public void batchUpdateNPrepared(boolean check) throws SQLException {
-		
-		String name = "";
-		int regNo;
-		int semester = 6;
-		String address = "Islamabad";
-		Random randName = new Random();
-		  	
-		PreparedStatement stmt=con.prepareStatement("INSERT INTO students (name, regNo, semester, address) VALUES(?,?,?,?)"); 
-		
+	public long batchUpdateNPrepared(boolean check) throws SQLException {
 		if(check==true)
 	        con.setAutoCommit(true);
 		else
 			con.setAutoCommit(false);
-		
-        int[] count;
-
+		standQuery = con.createStatement();
+        long startTime = System.currentTimeMillis();
+		String name = "blob";
+		int regNo;
+		int semester = 6;
+		String address = "Islamabad";
+		Random randReg = new Random();
+		  	
+		PreparedStatement stmt=con.prepareStatement("INSERT INTO students (name, regNo, semester, address) VALUES(?,?,?,?)"); 
+	    int[] count;
 		try {
 			for(int i=0; i<5000; i++){
-				name = generateName();
-				regNo = randName.nextInt(99999) + 100000;
+				regNo = randReg.nextInt(99999) + 100000;
 				String query = "INSERT INTO students (name, regNo, semester, address) VALUES ('"+name+"', '"+regNo+"', '"+semester+"', '"+address+"');";
 				ins = standQuery.executeUpdate(query);
 			}
@@ -169,27 +175,13 @@ public void batchUpdateNPrepared(boolean check) throws SQLException {
 		catch(Exception ex){
 			System.out.println(ex);
 		}
+		if(check == false)
+			con.commit();
+        long endTime = System.currentTimeMillis();
+        return endTime - startTime;
 	}
 	
-	public String generateName() {
-		int leftLimit = 97;
-	    int rightLimit = 122;
-	    int targetStringLength = 5;
-	    Random random = new Random();
-	    StringBuilder buffer = new StringBuilder(targetStringLength);
-	    for (int i = 0; i < targetStringLength; i++) {
-	        int randomLimitedInt = leftLimit + (int) 
-	          (random.nextFloat() * (rightLimit - leftLimit + 1));
-	        buffer.append((char) randomLimitedInt);
-	    }
-	    String generatedString = buffer.toString();
-	 
-//	    System.out.println(generatedString);
-	    return generatedString;
-	}
-	public void truncateStudentTable() throws SQLException {
-		
+	public void truncateTable() throws SQLException {	
 		standQuery.executeUpdate("TRUNCATE students");
-		//System.out.println("-Student Table Truncated");  
 	}
 }
