@@ -11,17 +11,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.cfg.Configuration;
 
 import application.hibernate.*;
 
@@ -32,65 +23,40 @@ public class LoginController {
 	private PasswordField pass;
 	@FXML
 	private TextField username;
-	private static SessionFactory sessionf; 
 	private BorderPane border;
+    userDAO UserDAO = new userDAO();
 
 	public void setBorder(BorderPane rootLayout) {
 		this.border = rootLayout;
 	}
+	
 	public void loginButtonClick(ActionEvent event){
-		try {
-			sessionf =  new Configuration().configure().buildSessionFactory();
-		} catch (Throwable ex) { 
-		     System.err.println("Failed to create sessionFactory object." + ex);
-		     throw new ExceptionInInitializerError(ex); 
-		}
-		checkUser();
-	
-//		user u = new user();
-//		u.setCnic(61154654);
-//		u.setPhone(61154654);
-//		u.setPassword(pass.getText());
-//		u.setUsername(username.getText());	
-//		SessionFactory sessionf =  new Configuration().configure().buildSessionFactory();
-//		Session session = sessionf.openSession();
-//		session.beginTransaction();
-//		session.save(u);
-//		session.getTransaction().commit();
-//		session.close();
-//		sessionf.close();	      
-//		System.out.println(pass.getText());
-//		System.out.println(username.getText());
-	}
-	
-	public void checkUser() {
-		Session session = sessionf.openSession();
-	    Transaction tx = null; 
-	    boolean flag = false;
-		try {
-		    tx = session.beginTransaction();
-		    List user = session.createQuery("FROM user").list(); 
-		    for (Iterator iterator = user.iterator(); iterator.hasNext();){
-			    user u = (user) iterator.next(); 
-			    if(u.getUsername().equals(username.getText()) && u.getPassword().equals(pass.getText()) ) {
-			    	if(u.getPrivilege().equals("admin")) {
-				    	System.out.println("logged in!");
-				    	try {
-					    	FXMLLoader loader = new FXMLLoader();
-				            loader.setLocation(Main.class.getResource("AdminPanel.fxml"));
-				            AnchorPane personPanel = (AnchorPane) loader.load();
-				            border.setCenter(personPanel);
-				    	} catch (IOException e) {
-				            e.printStackTrace();
-				        }
-				    	return;
-			    	}
-			    	else {
-			    		flag = true;
-			    		break;
-			    	}
-			    }
-		    }
+        LoginController ops = new LoginController();
+        boolean flag = false;
+        List<user> userList = ops.getUserList();
+        
+        if (userList != null) {
+            for (user u : userList) {
+        	    if(u.getUsername().equals(username.getText()) && u.getPassword().equals(pass.getText()) ) {
+        	    	if(u.getPrivilege().equals("admin")) {
+        		    	try {
+        			    	FXMLLoader loader = new FXMLLoader();
+        		            loader.setLocation(Main.class.getResource("AdminPanel.fxml"));
+        		            AnchorPane personPanel = (AnchorPane) loader.load();
+        		            border.setCenter(personPanel);
+        		            AdminPanelController panelC = loader.getController();
+        		            panelC.setBorder(border);
+        		    	} catch (IOException e) {
+        		            e.printStackTrace();
+        		        }
+        		    	return;
+        	    	}
+        	    	else {
+        	    		flag = true;
+        	    		break;
+        	    	}
+        	    }
+        	}
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Login Error");
             if(flag)
@@ -98,13 +64,38 @@ public class LoginController {
             else 
             	alert.setHeaderText("Invalid Username or Password!");
             alert.showAndWait();
-		    tx.commit();
-		} catch (HibernateException e) {
-		     if (tx!=null) tx.rollback();
-		     e.printStackTrace(); 
-		} finally {
-		     session.close(); 
-		}
+        }
 	}
+
+    public user createUser() {
+        user s = new user();
+        s.setUsername("Ali yo");
+        s.setPassword("John");
+        s.setPhone(12);
+        s.setCnic(007);
+        s.setPrivilege("Available");
+        UserDAO.addUser(s);
+        return s;
+    }
+
+    public void updateUser(Integer id) {
+        user u = UserDAO.findUserById(id);
+        u.setUsername("online tutorials point");
+        UserDAO.updateUser(u);
+        System.out.println("User Updated Success");
+    }
+
+    public void deleteUser(Integer id) {
+    	UserDAO.deleteUser(id);
+        System.out.println("User Deleted Success");
+    }
+
+    public List<user> getUserList() {
+        return UserDAO.listUser();
+    }
+
+    public user getUser(Integer id) {
+        return UserDAO.findUserById(id);
+    }
 
 }

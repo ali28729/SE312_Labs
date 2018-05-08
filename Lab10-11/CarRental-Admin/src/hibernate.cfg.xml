@@ -35,6 +35,7 @@
 
         <!-- Names the annotated entity class -->
         <mapping class="application.hibernate.user"/>
+        <mapping class="application.hibernate.car"/>
 
     </session-factory>
 

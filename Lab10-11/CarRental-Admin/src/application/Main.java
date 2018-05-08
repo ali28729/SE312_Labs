@@ -2,6 +2,8 @@ package application;
 	
 import java.io.IOException;
 
+import org.hibernate.SessionFactory;
+
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
