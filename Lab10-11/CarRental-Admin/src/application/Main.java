@@ -4,14 +4,17 @@ import java.io.IOException;
 
 import org.hibernate.SessionFactory;
 
+import application.hibernate.car;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.AnchorPane;
-
 
 
 public class Main extends Application {
@@ -23,7 +26,9 @@ public class Main extends Application {
 		try {
 			this.primaryStage = primaryStage;
 	        this.primaryStage.setTitle("CarRental");
+	        this.primaryStage.getIcons().add(new Image("file:resources/images/logo.png"));
 	        initRootLayout();
+	        this.primaryStage.setOnCloseRequest(WindowEvent -> this.handle(WindowEvent));
 	        showAdminOverview();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -50,17 +55,18 @@ public class Main extends Application {
     }
 
     /**
-     * Shows the person overview inside the root layout.
+     * Shows the c overview inside the root layout.
      */
     public void showAdminOverview() {
         try {
-            // Load person overview.
+            // Load c overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("AdminOverview.fxml"));
-            AnchorPane personOverview = (AnchorPane) loader.load();
-            // Set person overview into the center of root layout.
-            rootLayout.setCenter(personOverview);   
+            AnchorPane cOverview = (AnchorPane) loader.load();
+            // Set c overview into the center of root layout.
+            rootLayout.setCenter(cOverview);   
             LoginController controller = loader.getController();
+            controller.setMainApp(this);
             controller.setBorder(rootLayout);
         } catch (IOException e) {
             e.printStackTrace();
@@ -71,8 +77,8 @@ public class Main extends Application {
     	try {
 	    	FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("AdminPanel.fxml"));
-            AnchorPane personPanel = (AnchorPane) loader.load();
-            // Set person overview into the center of root layout.
+            AnchorPane cPanel = (AnchorPane) loader.load();
+            // Set c overview into the center of root layout.
             FXMLLoader rootloader = new FXMLLoader(Main.class.getResource("RootLayout.fxml"));
             BorderPane border = rootloader.load();
             System.out.println(border.getId());
@@ -82,6 +88,45 @@ public class Main extends Application {
         }
     }
     
+    /**
+     * Opens a dialog to edit details for the specified c. If the user
+     * clicks OK, the changes are saved into the provided c object and true
+     * is returned.
+     * 
+     * @param c the c object to be edited
+     * @return true if the user clicked OK, false otherwise.
+     */
+    public boolean showCarEditDialog(car c) {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("CarEditDialog.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Edit Car");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the c into the controller.
+            CarEditDialogController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setCar(c);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+            return controller.isOkClicked();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     /**
      * Returns the main stage.
@@ -89,6 +134,10 @@ public class Main extends Application {
      */
     public Stage getPrimaryStage() {
         return primaryStage;
+    }
+    public void handle(WindowEvent event) {
+      System.out.println("exiting");
+      System.exit(0);
     }
 	
 	public static void main(String[] args) {

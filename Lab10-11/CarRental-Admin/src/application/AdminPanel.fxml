@@ -18,7 +18,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <TableView fx:id="carTable" layoutX="14.0" layoutY="48.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+                  <TableView fx:id="carTable" layoutX="14.0" layoutY="48.0" prefHeight="569.0" prefWidth="325.0" stylesheets="@dark.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
                     <columns>
                       <TableColumn fx:id="VINColumn" prefWidth="75.0" text="VIN" />
                       <TableColumn fx:id="modelColumn" prefWidth="75.0" text="Model" />
@@ -27,13 +27,13 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
-                  <TextField layoutX="27.0" layoutY="-1.0" promptText="Search" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <TextField fx:id="searchBar" layoutX="27.0" layoutY="-1.0" onAction="#searchModels" onInputMethodTextChanged="#searchModels" promptText="Search models..." styleClass="text-field" stylesheets="@dark.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="background" stylesheets="@dark.css">
                <children>
-                  <Label layoutX="189.0" layoutY="34.0" text="Car Details" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
-                  <GridPane layoutX="142.0" layoutY="121.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0">
+                  <Label layoutX="189.0" layoutY="34.0" styleClass="label-header" stylesheets="@dark.css" text="Car Details" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                  <GridPane layoutX="142.0" layoutY="121.0" styleClass="background" stylesheets="@dark.css" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="80.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -59,22 +59,22 @@
                         <Label text="City" GridPane.rowIndex="6" />
                         <Label text="Rent" GridPane.rowIndex="7" />
                         <Label text="Availibility" GridPane.rowIndex="8" />
-                        <Label fx:id="VIN" text="Label" GridPane.columnIndex="1" />
-                        <Label fx:id="make" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label fx:id="model" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label fx:id="model_year" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label fx:id="body_class" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Label fx:id="regno" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <Label fx:id="city" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <Label fx:id="rent" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                        <Label fx:id="availability" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <Label fx:id="VIN" styleClass="label-bright" text="Label" GridPane.columnIndex="1" />
+                        <Label fx:id="make" styleClass="label-bright" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="model" styleClass="label-bright" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="model_year" styleClass="label-bright" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="body_class" styleClass="label-bright" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="regno" styleClass="label-bright" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label fx:id="city" styleClass="label-bright" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="rent" styleClass="label-bright" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Label fx:id="availability" styleClass="label-bright" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                      </children>
                   </GridPane>
-                  <ButtonBar layoutX="338.0" layoutY="530.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
+                  <ButtonBar layoutX="338.0" layoutY="530.0" prefHeight="40.0" prefWidth="314.0" styleClass="background" stylesheets="@dark.css" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
                     <buttons>
-                      <Button mnemonicParsing="false" text="New" />
-                        <Button mnemonicParsing="false" text="Edit" />
-                        <Button mnemonicParsing="false" text="Delete" />
+                      <Button mnemonicParsing="false" onAction="#handleNewCar" prefHeight="33.0" prefWidth="119.0" text="New" />
+                        <Button mnemonicParsing="false" onAction="#handleEditCar" text="Edit" />
+                        <Button mnemonicParsing="false" onAction="#handleDeleteCar" text="Delete" />
                     </buttons>
                   </ButtonBar>
                </children>

@@ -25,7 +25,11 @@ public class LoginController {
 	private TextField username;
 	private BorderPane border;
     userDAO UserDAO = new userDAO();
+    private Main mainApp;
 
+    public void setMainApp(Main mainApp) {
+        this.mainApp = mainApp;
+    }
 	public void setBorder(BorderPane rootLayout) {
 		this.border = rootLayout;
 	}
@@ -46,6 +50,8 @@ public class LoginController {
         		            border.setCenter(personPanel);
         		            AdminPanelController panelC = loader.getController();
         		            panelC.setBorder(border);
+        		            panelC.setMainApp(mainApp);
+
         		    	} catch (IOException e) {
         		            e.printStackTrace();
         		        }

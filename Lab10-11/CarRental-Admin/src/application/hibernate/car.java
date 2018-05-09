@@ -39,6 +39,7 @@ public class car implements java.io.Serializable {
 
     public car() {
 		// TODO Auto-generated constructor stub
+    	this("Enter VIN of your car", "Maker of the car", "Model of the Car",2018,"Body category of the car e.g. Sedan","XXX000",(double) 564,"available","Registration City");
 	}
 
 	@Id

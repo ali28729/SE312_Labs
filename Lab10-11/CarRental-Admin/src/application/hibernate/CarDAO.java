@@ -55,10 +55,14 @@ public class CarDAO {
 
     public void updateCar(car student) {
         Session session = null;
+        Transaction transaction = null;
         try {
             session = HibernateConnector.getInstance().getSession();
+            System.out.println("session : "+session);
+            transaction = session.beginTransaction();
             session.saveOrUpdate(student);
             session.flush();
+            transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -93,6 +97,27 @@ public class CarDAO {
             beginTransaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+    
+    public ObservableList<car> searchCarByModels(String in) {
+        Session session = null;
+        try {
+            session = HibernateConnector.getInstance().getSession();
+            Query query = session.createQuery("from car s where s.model like ?");
+            query.setString(0, "%"+in+"%");
+            ObservableList<car> queryList = FXCollections.observableArrayList(query.list());
+            if (queryList != null && queryList.isEmpty()) {
+                return null;
+            } else {
+                System.out.println("list " + queryList);
+                return queryList;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         } finally {
             session.close();
         }
