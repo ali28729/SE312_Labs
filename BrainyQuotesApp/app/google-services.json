@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "374303830120",
+    "firebase_url": "https://sc-project-d8f3d.firebaseio.com",
+    "project_id": "sc-project-d8f3d",
+    "storage_bucket": "sc-project-d8f3d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:374303830120:android:c6365002da7ad2b3",
+        "android_client_info": {
+          "package_name": "com.example.fahadsaleem.scproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "374303830120-duhjvtpt1scnqfi1f4ta5sqv3foetc92.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "374303830120-duhjvtpt1scnqfi1f4ta5sqv3foetc92.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASmlw__av2V_0XpSVt8gZsTFD0XMd6PMc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
